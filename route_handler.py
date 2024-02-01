@@ -2,6 +2,7 @@ import pandas as pd
 from route import Route
 from hold_handler import HoldHandler
 
+
 class RouteHandler:
     def __init__(self):
         self.routes_df = self.read_routes()
@@ -30,3 +31,8 @@ class RouteHandler:
 
     def get_grades(self):
         return set(self.routes_df["grade"].values)
+
+    def get_filtered_routes(self, grades):
+        if grades == []:
+            return self.routes_df
+        return self.routes_df[self.routes_df['grade'].isin(grades)]

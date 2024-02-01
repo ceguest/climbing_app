@@ -39,8 +39,8 @@ class TkApp:
         self.canvas = Canvas(self.root, width=800, height=600)
         self.canvas.grid(row=0, column=0, rowspan=50, columnspan=3)
 
-        img_res = route_image.resize((800, 600))
-        self.canvas.image = ImageTk.PhotoImage(img_res)
+        self.img_res = route_image.resize((800, 600))
+        self.canvas.image = ImageTk.PhotoImage(self.img_res)
         self.canvas.create_image(0, 0, image=self.canvas.image, anchor='nw')
 
         self.create_routes_listbox()
@@ -51,8 +51,21 @@ class TkApp:
 
         self.create_grade_filter(grades)
 
+    def update_routes_listbox(self, event=None):
+        grade_indicies = self.grades_listbox.curselection()
+        grades = []
+        for index in grade_indicies:
+            grades.append(self.grades_listbox.get(index))
+        routes = self.route_handler.get_filtered_routes(grades=grades)
+        self.routes_listbox.delete(0, END)
+        x = 1
+        for index in routes.index:
+            list_string = f"{routes['route_id'][index]}: {routes['route_name'][index]} ({routes['grade'][index]})"
+            self.routes_listbox.insert(x, list_string)
+            x += 1
+
     def create_routes_listbox(self):
-        self.routes_listbox = Listbox(self.root, selectmode=SINGLE)
+        self.routes_listbox = Listbox(self.root, selectmode=SINGLE, exportselection=False)
         x = 1
         for index in self.route_handler.routes_df.index:
             list_string = f"{self.route_handler.routes_df['route_id'][index]}: {self.route_handler.routes_df['route_name'][index]} ({self.route_handler.routes_df['grade'][index]})"
@@ -60,19 +73,19 @@ class TkApp:
             x += 1
         self.routes_listbox.grid(row=1, column=3, rowspan=30, sticky=(N, S, E, W))
         self.routes_listbox.bind("<<ListboxSelect>>", self.update_route)
-        self.routes_listbox.bind("<Down>", self.OnEntryUpDown)
-        self.routes_listbox.bind("<Up>", self.OnEntryUpDown)
+        self.routes_listbox.bind("<Down>", self.OnEntryUpDown_routes_listbox)
+        self.routes_listbox.bind("<Up>", self.OnEntryUpDown_routes_listbox)
 
     def create_grade_filter(self, grades):
-        self.grades_listbox = Listbox(self.root, selectmode=MULTIPLE)
-
+        self.grades_listbox = Listbox(self.root, selectmode=MULTIPLE, exportselection=False)
         x = 1
         for grade in grades:
             self.grades_listbox.insert(x, grade)
             x += 1
         self.grades_listbox.grid(row=32, column=3, rowspan=18, sticky=(N, S, E, W))
+        self.grades_listbox.bind("<<ListboxSelect>>", self.update_routes_listbox)
 
-    def OnEntryUpDown(self, event):
+    def OnEntryUpDown_routes_listbox(self, event):
         selection = event.widget.curselection()[0]
 
         if event.keysym == 'Up':
@@ -87,7 +100,13 @@ class TkApp:
         self.update_route()
 
     def update_route(self, event=None):
-        route_string = self.routes_listbox.get(self.routes_listbox.curselection())
+        route_index = self.routes_listbox.curselection()
+        if route_index == ():
+            self.canvas.image = ImageTk.PhotoImage(self.img_res)
+            self.canvas.create_image(0, 0, image=self.canvas.image, anchor='nw')
+            return
+
+        route_string = self.routes_listbox.get(route_index)
         route_id = int(route_string.split(":")[0])
         route = self.route_handler.load_route(route_id)
         img = route_visualiser.show_route(route)
@@ -105,10 +124,4 @@ if __name__ == "__main__":
     route_handler = RouteHandler()
     route_visualiser = RouteVisualiser()
     tk_app = TkApp(route_handler, route_visualiser)
-    # route_label = Label(root, text="Enter root id:")
-    # route_entry = Entry(root)
-    # go_button = Button(root, text="Go", command=show_route)
-    # route_label.pack()
-    # route_entry.pack()
-    # go_button.pack()
     tk_app.root.mainloop()
