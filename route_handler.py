@@ -27,3 +27,6 @@ class RouteHandler:
 
     def get_route_ids(self):
         return self.routes_df["route_id"].values
+
+    def get_grades(self):
+        return set(self.routes_df["grade"].values)
