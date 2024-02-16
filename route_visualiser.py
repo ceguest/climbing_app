@@ -16,6 +16,3 @@ class RouteVisualiser:
             cv2.circle(img, (hold.x_coord, hold.y_coord), 20, (255, 255, 0), -1)
         return img
 
-        # cv2.imshow('image', img)
-        # cv2.waitKey(0)
-        # cv2.destroyAllWindows()

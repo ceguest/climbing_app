@@ -8,7 +8,6 @@ class HoldHandler:
 
     def read_holds(self):
         df = pd.read_csv('static/Coord_List.txt')
-        # print(df.to_string())
         return df
 
     def get_holds(self, hold_ids):
