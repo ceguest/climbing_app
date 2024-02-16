@@ -27,29 +27,29 @@ def convert_cv2_to_pil(img):
 
 class TkApp:
     def __init__(self, route_handler, route_visualiser):
+        self.canvas = None
         self.routes_listbox = None
+        
         self.route_handler = route_handler
         self.route_visualiser = route_visualiser
         self.root = Tk()
+
         route_image = get_base_image()
+        self.create_route_canvas(row=0, column=0, rowspan=50, columnspan=3)
+        self.display_image_on_route_canvas(route_image)
 
-        route_entry_label = Label(self.root, text="Select route:")
-        route_entry_label.grid(row=0, column=3, rowspan=1, columnspan=1)
+        self.create_routes_listbox(row=0, column=3, rowspan=31, columnspan=1)
 
-        self.canvas = Canvas(self.root, width=800, height=600)
-        self.canvas.grid(row=0, column=0, rowspan=50, columnspan=3)
+        self.create_grade_filter(row=31, column=3, rowspan=19, columnspan=1)
 
+    def display_image_on_route_canvas(self, route_image):
         self.img_res = route_image.resize((800, 600))
         self.canvas.image = ImageTk.PhotoImage(self.img_res)
         self.canvas.create_image(0, 0, image=self.canvas.image, anchor='nw')
 
-        self.create_routes_listbox()
-
-        grade_entry_label = Label(self.root, text="Select grades:")
-        grade_entry_label.grid(row=31, column=3, rowspan=1, columnspan=1)
-        grades = route_handler.get_grades()
-
-        self.create_grade_filter(grades)
+    def create_route_canvas(self, row, column, rowspan, columnspan):
+        self.canvas = Canvas(self.root, width=800, height=600)
+        self.canvas.grid(row=row, column=column, rowspan=rowspan, columnspan=columnspan)
 
     def update_routes_listbox(self, event=None):
         grade_indicies = self.grades_listbox.curselection()
@@ -64,25 +64,32 @@ class TkApp:
             self.routes_listbox.insert(x, list_string)
             x += 1
 
-    def create_routes_listbox(self):
+    def create_routes_listbox(self, row, column, rowspan, columnspan):
+        route_entry_label = Label(self.root, text="Select route:")
+        route_entry_label.grid(row=row, column=column, rowspan=1, columnspan=columnspan)
+        
         self.routes_listbox = Listbox(self.root, selectmode=SINGLE, exportselection=False)
         x = 1
         for index in self.route_handler.routes_df.index:
             list_string = f"{self.route_handler.routes_df['route_id'][index]}: {self.route_handler.routes_df['route_name'][index]} ({self.route_handler.routes_df['grade'][index]})"
             self.routes_listbox.insert(x, list_string)
             x += 1
-        self.routes_listbox.grid(row=1, column=3, rowspan=30, sticky=(N, S, E, W))
+        self.routes_listbox.grid(row=row+1, column=column, rowspan=rowspan-1, sticky=(N, S, E, W))
         self.routes_listbox.bind("<<ListboxSelect>>", self.update_route)
         self.routes_listbox.bind("<Down>", self.OnEntryUpDown_routes_listbox)
         self.routes_listbox.bind("<Up>", self.OnEntryUpDown_routes_listbox)
 
-    def create_grade_filter(self, grades):
+    def create_grade_filter(self, row, column, rowspan, columnspan):
+        grade_entry_label = Label(self.root, text="Select grades:")
+        grade_entry_label.grid(row=row, column=column, rowspan=1, columnspan=columnspan)
+        grades = self.route_handler.get_grades()
+
         self.grades_listbox = Listbox(self.root, selectmode=MULTIPLE, exportselection=False)
         x = 1
         for grade in grades:
             self.grades_listbox.insert(x, grade)
             x += 1
-        self.grades_listbox.grid(row=32, column=3, rowspan=18, sticky=(N, S, E, W))
+        self.grades_listbox.grid(row=row+1, column=column, rowspan=rowspan-1, sticky=(N, S, E, W))
         self.grades_listbox.bind("<<ListboxSelect>>", self.update_routes_listbox)
 
     def OnEntryUpDown_routes_listbox(self, event):
@@ -113,7 +120,7 @@ class TkApp:
 
         img = convert_cv2_to_pil(img)
 
-        width, height = img.size
+        # width, height = img.size
         img_res = img.resize((800, 600))
 
         self.canvas.image = ImageTk.PhotoImage(img_res)
