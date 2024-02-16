@@ -18,3 +18,13 @@ class HoldHandler:
             holds[hold_id] = Hold(hold_data["x"].values[0], hold_data["y"].values[0], hold_data["id"].values[0])
 
         return holds
+
+    def get_nearby_hold(self, x, y):
+        radius = 20
+        df = self.holds_df
+        filtered_holds = df[(df['x'] < x + radius) &
+                            (df['x'] > x - radius) &
+                            (df['y'] < y + radius) &
+                            (df['y'] > y - radius)]
+
+        return filtered_holds

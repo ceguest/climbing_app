@@ -5,11 +5,11 @@ from hold_handler import HoldHandler
 
 class RouteHandler:
     def __init__(self):
-        self.routes_df = self.read_routes()
+        self.routes_df = None
+        self.read_routes()
 
     def read_routes(self):
-        df = pd.read_csv('static/routes.csv', sep=";")
-        return df
+        self.routes_df = pd.read_csv('static/routes.csv', sep=";")
 
     def load_route(self, route_id):
         hold_handler = HoldHandler()

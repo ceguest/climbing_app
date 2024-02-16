@@ -1,4 +1,5 @@
 from tkinter import *
+from route_adder import RouteAdder
 from route_handler import RouteHandler
 from route_visualiser import RouteVisualiser
 from PIL import Image as IM
@@ -31,7 +32,7 @@ class TkApp:
         self.img_res = None
         self.canvas = None
         self.routes_listbox = None
-        
+
         self.route_handler = route_handler
         self.route_visualiser = route_visualiser
         self.root = Tk()
@@ -42,8 +43,18 @@ class TkApp:
 
         self.create_routes_listbox(row=0, column=3, rowspan=31, columnspan=1)
 
-        self.create_grade_filter(row=31, column=3, rowspan=19, columnspan=1)
+        self.create_grade_filter(row=31, column=3, rowspan=18, columnspan=1)
 
+        add_route_button = Button(self.root, text="Add route", command=self.add_route)
+        add_route_button.grid(row=49, column=3, rowspan=1, columnspan=1)
+
+
+    def add_route(self):
+        route_adder = RouteAdder()
+        route_adder.create_route()
+        route_adder.append_route()
+        self.route_handler.read_routes()
+        self.update_routes_listbox()
 
     def create_route_canvas(self, row, column, rowspan, columnspan):
         self.canvas = Canvas(self.root, width=800, height=600)

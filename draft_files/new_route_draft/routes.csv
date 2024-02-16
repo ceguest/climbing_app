@@ -1,0 +1,18 @@
+route_id;route_name;specials;holds;grade;setter;date_set
+1;LH throw;16, 20, 80;15, 53, 62;?;Claire;01/02/2024
+2;Left layback;13, 75;21, 28, 61;4;Claire;01/02/2024
+3;Green one;6, 16, 63;37, 47;4;Claire;31/01/2024
+4;Mean green one;6, 16, 76;37, 47, 63;?;Claire;31/01/2024
+5;Left ladder A;12, 21, 75;29, 42, 60;4;Tom;08/02/2024
+6;Left ladder B;12, 21, 75;12, 21, 42, 60;?;Tom;08/02/2024
+7;Low L, High R A;12, 21, 80;28, 50, 62;?;Tom;08/02/2024
+8;Low L, High R B;12, 21, 79;28, 50, 62;?;Tom;08/02/2024
+9;Route 9;17, 79;48;TBC;Tom;16/02/2024
+10;Right Pinch;15, 38, 79;48, 69;TBC;Tom;16/02/2024
+11;Dan's Pink Dots;17, 74;67, 23, 22, 44;TBC;DanStep;25/01/2024
+12;Undercut + roll;10;14, 28, 62, 69, 78;TBC;Claire;16/02/2024
+13;Route 13;11, 73;44, 59;TBC;Tom;16/02/2024
+14;Dan Black Mod;8, 12, 80;29, 50;TBC;Tom;16/02/2024
+15;Dan's Black Dots;8, 12, 80;50;TBC;DanStep;25/01/2024
+16;Route 16;4, 12, 78;32, 59;TBC;Tom;16/02/2024
+17;Route 17;;;TBC;Tom;16/02/2024
