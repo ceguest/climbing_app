@@ -15,12 +15,23 @@ class RouteHandler:
         hold_handler = HoldHandler()
         df = self.routes_df
         route_data = df.loc[df['route_id'] == int(route_id)]
-        hold_ids = route_data["holds"].values[0].split(",")
 
-        holds = hold_handler.get_holds(hold_ids)
+        try:
+            hold_ids = route_data["holds"].values[0].split(",")
+            holds = hold_handler.get_holds(hold_ids)
+        except:
+            holds = {}
+
+        try:
+            special_ids = route_data["specials"].values[0].split(",")
+            specials = hold_handler.get_holds(special_ids)
+        except:
+            specials = {}
+
         route = Route(
             id=route_data["route_id"].values[0],
             name=route_data["route_name"].values[0],
+            specials=specials,
             holds=holds,
             grade=route_data["grade"].values[0]
         )
