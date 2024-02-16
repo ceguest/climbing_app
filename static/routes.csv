@@ -1,5 +1,9 @@
 route_id;route_name;holds;grade;setter;date_set
-1;WIP;15, 53, 62, 80;?;Claire;01/02/2024
+1;LH throw;16, 20, 15, 53, 62, 80;?;Claire;01/02/2024
 2;Left layback;13, 21, 28, 61, 75;4;Claire;01/02/2024
 3;Green one;6, 16, 37, 47, 63;4;Claire;31/01/2024
 4;Mean green one;6, 16, 37, 47, 63, 76;?;Claire;31/01/2024
+5;Left ladder A;12, 21, 29, 42, 60, 75;4;Tom;08/02/2024
+6;Left ladder B;12, 21, 42, 60, 75;?;Tom;08/02/2024
+7; Low L, High R A;12, 21, 28, 50, 62, 80;?;Tom;08/02/2024
+8; Low L, High R B;12, 21, 28, 50, 62, 79;?;Tom;08/02/2024
