@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox as mb
 from route_adder import RouteAdder
 from route_handler import RouteHandler
 from route_visualiser import RouteVisualiser
@@ -8,6 +9,7 @@ import cv2
 
 NUMBERED_IMAGE = "static/Hold_Numbers_Markup.png"
 BASE_IMAGE = "static/Board_Layout.png"
+
 
 def get_base_image():
     img = IM.open(BASE_IMAGE)
@@ -36,6 +38,7 @@ class TkApp:
         self.route_handler = route_handler
         self.route_visualiser = route_visualiser
         self.root = Tk()
+        self.root.title('Homewall')
 
         self.create_route_canvas(row=0, column=0, rowspan=50, columnspan=3)
         self.base_image = get_base_image()
@@ -48,11 +51,16 @@ class TkApp:
         add_route_button = Button(self.root, text="Add route", command=self.add_route)
         add_route_button.grid(row=49, column=3, rowspan=1, columnspan=1)
 
-
     def add_route(self):
         route_adder = RouteAdder()
         route_adder.create_route()
-        route_adder.append_route()
+        check_add_route = mb.askquestion(title=None,
+                                         message='Do you want to save your new route?',
+                                         icon='question',
+                                         type='yesno',
+                                         default='yes')
+        if check_add_route == 'yes':
+            route_adder.append_route()
         self.route_handler.read_routes()
         self.update_routes_listbox()
 
@@ -75,6 +83,11 @@ class TkApp:
         self.routes_listbox.bind("<Down>", self.OnEntryUpDown_routes_listbox)
         self.routes_listbox.bind("<Up>", self.OnEntryUpDown_routes_listbox)
 
+        self.routes_scrollbar = Scrollbar(self.routes_listbox, orient='vertical')
+        self.routes_scrollbar.config(command=self.routes_listbox.yview)
+        self.routes_scrollbar.pack(side='right', fill='y')
+        self.routes_listbox.config(yscrollcommand=self.routes_scrollbar.set)
+
     def create_grade_filter(self, row, column, rowspan, columnspan):
         grade_entry_label = Label(self.root, text="Select grades:")
         grade_entry_label.grid(row=row, column=column, rowspan=1, columnspan=columnspan)
@@ -87,6 +100,12 @@ class TkApp:
             x += 1
         self.grades_listbox.grid(row=row + 1, column=column, rowspan=rowspan - 1, sticky=(N, S, E, W))
         self.grades_listbox.bind("<<ListboxSelect>>", self.update_routes_listbox)
+
+    ##        if the following code (edited duplicate of route scrollbar) is added the display 'falls apart'
+    ##        self.grades_scrollbar = Scrollbar(self.grades_listbox, orient='vertical')
+    ##        self.grades_scrollbar.config(command = self.grades_listbox.yview)
+    ##        self.grades_scrollbar.pack(side='right', fill='y')
+    ##        self.grades_listbox.config(yscrollcommand=self.grades_scrollbar.set)
 
     def update_routes_listbox(self, event=None):
         grade_indices = self.grades_listbox.curselection()

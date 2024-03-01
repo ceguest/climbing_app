@@ -3,6 +3,8 @@ import pandas as pd
 
 from hold_handler import HoldHandler
 from datetime import datetime as dt
+from tkinter import simpledialog as sd
+
 
 class RouteAdder:
     def __init__(self):
@@ -11,14 +13,18 @@ class RouteAdder:
         self.route_holds = []
         self.special_holds = []
 
-
-
     def create_route(self):
         font = cv2.FONT_HERSHEY_COMPLEX
 
-        cv2.putText(self.base_img,
-                    "Press any key to close this window once all holds are selected",
-                    (100, 100), font, 2, (255, 255, 255), 5)
+        message1 = "Press any key to close this window once all holds are selected."
+        message2 = "L-click to add a hold,"
+        message3 = "Shift + L-click to add a start/finish,"
+        message4 = "R-click to remove any hold."
+
+        cv2.putText(self.base_img, message1, (100, 100), font, 2, (255, 255, 255), 5)
+        cv2.putText(self.base_img, message2, (1400, 2700), font, 1.5, (255, 255, 255), 5)
+        cv2.putText(self.base_img, message3, (1400, 2800), font, 1.5, (255, 255, 255), 5)
+        cv2.putText(self.base_img, message4, (1400, 2900), font, 1.5, (255, 255, 255), 5)
         cv2.imshow('image', self.base_img)
         cv2.setMouseCallback('image', self.click_event)
         cv2.waitKey(0)
@@ -96,11 +102,28 @@ class RouteAdder:
         lastRouteID = df2['route_id'].iat[-1]
 
         newRouteID = lastRouteID + 1
-        routeName = "Route " + str(newRouteID)
+
+        routeName = sd.askstring(title="Route Name",
+                                 prompt="Enter a name for the route:",
+                                 initialvalue="Route " + str(newRouteID))
+        if routeName is None:
+            routeName = "Route " + str(newRouteID)
+
         specials = self.string_holds(self.special_holds)
         holds = self.string_holds(self.route_holds)
-        grade = "TBC"
-        setter = "UNCONFIRMED"
+
+        grade = sd.askstring(title="Grade",
+                             prompt="Enter a grade for the route:",
+                             initialvalue="TBC")
+        if grade is None:
+            grade = "TBC"
+
+        setter = sd.askstring(title="Setter",
+                              prompt="Enter the route setter",
+                              initialvalue="Unconfirmed")
+        if setter is None:
+            setter = "UNCONFIRMED"
+
         dateSet = dt.today().strftime('%d/%m/%Y')
 
         data = {'route_id': newRouteID,
