@@ -3,6 +3,8 @@ import pandas as pd
 
 from hold_handler import HoldHandler
 from datetime import datetime as dt
+from tkinter import simpledialog as sd
+
 
 class RouteAdder:
     def __init__(self):
@@ -11,21 +13,24 @@ class RouteAdder:
         self.route_holds = []
         self.special_holds = []
 
-
-
     def create_route(self):
         font = cv2.FONT_HERSHEY_COMPLEX
 
-        cv2.putText(self.base_img,
-                    "Press any key to close this window once all holds are selected",
-                    (100, 100), font, 2, (255, 255, 255), 5)
+        close_window_message = "Press any key to close this window once all holds are selected."
+        add_hold_message = "L-click to add a hold,"
+        special_hold_message = "Shift + L-click to add a start/finish,"
+        remove_hold_message = "R-click to remove any hold."
+
+        cv2.putText(self.base_img, close_window_message, (100, 100), font, 2, (255, 255, 255), 5)
+        cv2.putText(self.base_img, add_hold_message, (1400, 2700), font, 1.5, (255, 255, 255), 5)
+        cv2.putText(self.base_img, special_hold_message, (1400, 2800), font, 1.5, (255, 255, 255), 5)
+        cv2.putText(self.base_img, remove_hold_message, (1400, 2900), font, 1.5, (255, 255, 255), 5)
         cv2.imshow('image', self.base_img)
         cv2.setMouseCallback('image', self.click_event)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
     def click_event(self, event, x, y, flags, params):
-        df = self.hold_handler.holds_df
         img = self.base_img
         routeHolds = self.route_holds
         specialHolds = self.special_holds
@@ -36,8 +41,6 @@ class RouteAdder:
             hold_id = new_hold['id'].values[0]
             hold_x = new_hold['x'].values[0]
             hold_y = new_hold['y'].values[0]
-            # hold_used = [hold_id]
-            # hold_coord = get_coord_list('Coord_List.txt', hold_used)
 
             if hold_id in specialHolds:
                 specialHolds.remove(hold_id)
@@ -96,11 +99,28 @@ class RouteAdder:
         lastRouteID = df2['route_id'].iat[-1]
 
         newRouteID = lastRouteID + 1
-        routeName = "Route " + str(newRouteID)
+
+        routeName = sd.askstring(title="Route Name",
+                                 prompt="Enter a name for the route:",
+                                 initialvalue="Route " + str(newRouteID))
+        if routeName is None:
+            routeName = "Route " + str(newRouteID)
+
         specials = self.string_holds(self.special_holds)
         holds = self.string_holds(self.route_holds)
-        grade = "TBC"
-        setter = "UNCONFIRMED"
+
+        grade = sd.askstring(title="Grade",
+                             prompt="Enter a grade for the route:",
+                             initialvalue="TBC")
+        if grade is None:
+            grade = "TBC"
+
+        setter = sd.askstring(title="Setter",
+                              prompt="Enter the route setter",
+                              initialvalue="Unconfirmed")
+        if setter is None:
+            setter = "UNCONFIRMED"
+
         dateSet = dt.today().strftime('%d/%m/%Y')
 
         data = {'route_id': newRouteID,
