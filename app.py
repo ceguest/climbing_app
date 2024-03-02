@@ -102,10 +102,10 @@ class TkApp:
         self.grades_listbox.bind("<<ListboxSelect>>", self.update_routes_listbox)
 
     ##        if the following code (edited duplicate of route scrollbar) is added the display 'falls apart'
-    ##        self.grades_scrollbar = Scrollbar(self.grades_listbox, orient='vertical')
-    ##        self.grades_scrollbar.config(command = self.grades_listbox.yview)
-    ##        self.grades_scrollbar.pack(side='right', fill='y')
-    ##        self.grades_listbox.config(yscrollcommand=self.grades_scrollbar.set)
+##        self.grades_scrollbar = Scrollbar(self.grades_listbox, orient='vertical')
+##        self.grades_scrollbar.config(command = self.grades_listbox.yview)
+##        self.grades_scrollbar.pack(side='right', fill='y')
+##        self.grades_listbox.config(yscrollcommand=self.grades_scrollbar.set)
 
     def update_routes_listbox(self, event=None):
         grade_indices = self.grades_listbox.curselection()

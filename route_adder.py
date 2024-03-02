@@ -17,7 +17,6 @@ class RouteAdder:
         img = cv2.imread('static/Board_Layout.png', 1)
         all_hold_ids = self.hold_handler.get_all_hold_ids()
         holds = self.hold_handler.get_holds(all_hold_ids)
-        print(holds)
         for hold_id in holds.values():
             cv2.circle(img, (hold_id.x_coord, hold_id.y_coord),
                        20, (0, 0, 255), -1)
