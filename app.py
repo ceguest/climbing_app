@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import messagebox as mb
+from tkinter import messagebox
 from route_adder import RouteAdder
 from route_handler import RouteHandler
 from route_visualiser import RouteVisualiser
@@ -54,11 +54,11 @@ class TkApp:
     def add_route(self):
         route_adder = RouteAdder()
         route_adder.create_route()
-        check_add_route = mb.askquestion(title=None,
-                                         message='Do you want to save your new route?',
-                                         icon='question',
-                                         type='yesno',
-                                         default='yes')
+        check_add_route = messagebox.askquestion(title=None,
+                                                 message='Do you want to save your new route?',
+                                                 icon='question',
+                                                 type='yesno',
+                                                 default='yes')
         if check_add_route == 'yes':
             route_adder.append_route()
         self.route_handler.read_routes()

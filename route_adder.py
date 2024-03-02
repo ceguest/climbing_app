@@ -16,22 +16,21 @@ class RouteAdder:
     def create_route(self):
         font = cv2.FONT_HERSHEY_COMPLEX
 
-        message1 = "Press any key to close this window once all holds are selected."
-        message2 = "L-click to add a hold,"
-        message3 = "Shift + L-click to add a start/finish,"
-        message4 = "R-click to remove any hold."
+        close_window_message = "Press any key to close this window once all holds are selected."
+        add_hold_message = "L-click to add a hold,"
+        special_hold_message = "Shift + L-click to add a start/finish,"
+        remove_hold_message = "R-click to remove any hold."
 
-        cv2.putText(self.base_img, message1, (100, 100), font, 2, (255, 255, 255), 5)
-        cv2.putText(self.base_img, message2, (1400, 2700), font, 1.5, (255, 255, 255), 5)
-        cv2.putText(self.base_img, message3, (1400, 2800), font, 1.5, (255, 255, 255), 5)
-        cv2.putText(self.base_img, message4, (1400, 2900), font, 1.5, (255, 255, 255), 5)
+        cv2.putText(self.base_img, close_window_message, (100, 100), font, 2, (255, 255, 255), 5)
+        cv2.putText(self.base_img, add_hold_message, (1400, 2700), font, 1.5, (255, 255, 255), 5)
+        cv2.putText(self.base_img, special_hold_message, (1400, 2800), font, 1.5, (255, 255, 255), 5)
+        cv2.putText(self.base_img, remove_hold_message, (1400, 2900), font, 1.5, (255, 255, 255), 5)
         cv2.imshow('image', self.base_img)
         cv2.setMouseCallback('image', self.click_event)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
 
     def click_event(self, event, x, y, flags, params):
-        df = self.hold_handler.holds_df
         img = self.base_img
         routeHolds = self.route_holds
         specialHolds = self.special_holds
@@ -42,8 +41,6 @@ class RouteAdder:
             hold_id = new_hold['id'].values[0]
             hold_x = new_hold['x'].values[0]
             hold_y = new_hold['y'].values[0]
-            # hold_used = [hold_id]
-            # hold_coord = get_coord_list('Coord_List.txt', hold_used)
 
             if hold_id in specialHolds:
                 specialHolds.remove(hold_id)
