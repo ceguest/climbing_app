@@ -9,9 +9,20 @@ from tkinter import simpledialog as sd
 class RouteAdder:
     def __init__(self):
         self.hold_handler = HoldHandler()
-        self.base_img = cv2.imread('static/Basic_Layout.jpeg', 1)
+        self.base_img = self.create_base_img()
         self.route_holds = []
         self.special_holds = []
+
+    def create_base_img(self):
+        img = cv2.imread('static/Board_Layout.png', 1)
+        all_hold_ids = self.hold_handler.get_all_hold_ids()
+        holds = self.hold_handler.get_holds(all_hold_ids)
+        print(holds)
+        for hold_id in holds.values():
+            cv2.circle(img, (hold_id.x_coord, hold_id.y_coord),
+                       20, (0, 0, 255), -1)
+
+        return img
 
     def create_route(self):
         font = cv2.FONT_HERSHEY_COMPLEX

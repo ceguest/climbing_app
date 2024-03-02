@@ -19,6 +19,12 @@ class HoldHandler:
 
         return holds
 
+    def get_all_hold_ids(self):
+        df = self.holds_df
+        all_hold_ids = df['id'].tolist()
+        
+        return all_hold_ids
+
     def get_nearby_hold(self, x, y):
         radius = 20
         df = self.holds_df
