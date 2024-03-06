@@ -83,9 +83,9 @@ class TkApp:
         self.routes_listbox.bind("<Down>", self.OnEntryUpDown_routes_listbox)
         self.routes_listbox.bind("<Up>", self.OnEntryUpDown_routes_listbox)
 
-        self.routes_scrollbar = Scrollbar(self.routes_listbox, orient='vertical')
+        self.routes_scrollbar = Scrollbar(self.root, orient='vertical')
         self.routes_scrollbar.config(command=self.routes_listbox.yview)
-        self.routes_scrollbar.pack(side='right', fill='y')
+        self.routes_scrollbar.grid(row=row+1, column=column+1, rowspan=rowspan-1, sticky=(N, E, S, W))
         self.routes_listbox.config(yscrollcommand=self.routes_scrollbar.set)
 
     def create_grade_filter(self, row, column, rowspan, columnspan):
@@ -101,11 +101,10 @@ class TkApp:
         self.grades_listbox.grid(row=row + 1, column=column, rowspan=rowspan - 1, sticky=(N, S, E, W))
         self.grades_listbox.bind("<<ListboxSelect>>", self.update_routes_listbox)
 
-    ##        if the following code (edited duplicate of route scrollbar) is added the display 'falls apart'
-    ##        self.grades_scrollbar = Scrollbar(self.grades_listbox, orient='vertical')
-    ##        self.grades_scrollbar.config(command = self.grades_listbox.yview)
-    ##        self.grades_scrollbar.pack(side='right', fill='y')
-    ##        self.grades_listbox.config(yscrollcommand=self.grades_scrollbar.set)
+        self.grades_scrollbar = Scrollbar(self.root, orient='vertical')
+        self.grades_scrollbar.config(command = self.grades_listbox.yview)
+        self.grades_scrollbar.grid(row=row + 1, column=column+1, rowspan=rowspan - 1, sticky=(N, S, E, W))
+        self.grades_listbox.config(yscrollcommand=self.grades_scrollbar.set)
 
     def update_routes_listbox(self, event=None):
         grade_indices = self.grades_listbox.curselection()
