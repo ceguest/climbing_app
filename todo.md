@@ -9,6 +9,7 @@ TODO
   * with a project column containing a list of names?
   * would have to have a way of editing routes to add/remove project
   * maybe have an advanced filter in pop out?
+* check for duplicate routes
 
 Bugs
 * grade listbox needs to update after a new route is added
