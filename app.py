@@ -54,13 +54,21 @@ class TkApp:
     def add_route(self):
         route_adder = RouteAdder()
         route_adder.create_route()
-        check_add_route = messagebox.askquestion(title=None,
-                                                 message='Do you want to save your new route?',
-                                                 icon='question',
-                                                 type='yesno',
-                                                 default='yes')
-        if check_add_route == 'yes':
-            route_adder.append_route()
+        check_route_exists, route_nr, route_name = route_adder.check_route_exists()
+        if check_route_exists == True:
+            info_message = ('The holds you have selected already form route number '+
+                            str(route_nr) + " - " + route_name +
+                            ' so your new route cannot be created.')
+            info = messagebox.showwarning(title = None,
+                                          message = info_message)
+        else:
+            check_add_route = messagebox.askquestion(title=None,
+                                                     message='Do you want to save your new route?',
+                                                     icon='question',
+                                                     type='yesno',
+                                                     default='yes')
+            if check_add_route == 'yes':
+                route_adder.append_route()
         self.route_handler.read_routes()
         self.update_routes_listbox()
 
