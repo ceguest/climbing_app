@@ -91,11 +91,12 @@ class TkApp:
     def create_grade_filter(self, row, column, rowspan, columnspan):
         grade_entry_label = Label(self.root, text="Select grades:")
         grade_entry_label.grid(row=row, column=column, rowspan=1, columnspan=columnspan)
-        grades = self.route_handler.get_grades()
+        self.grades = self.route_handler.get_grades()
+        sorted_grades = self.sort_grade_list()
 
         self.grades_listbox = Listbox(self.root, selectmode=MULTIPLE, exportselection=False)
         x = 1
-        for grade in grades:
+        for grade in sorted_grades:
             self.grades_listbox.insert(x, grade)
             x += 1
         self.grades_listbox.grid(row=row + 1, column=column, rowspan=rowspan - 1, sticky=(N, S, E, W))
@@ -105,6 +106,21 @@ class TkApp:
         self.grades_scrollbar.config(command = self.grades_listbox.yview)
         self.grades_scrollbar.grid(row=row + 1, column=column+1, rowspan=rowspan - 1, sticky=(N, S, E, W))
         self.grades_listbox.config(yscrollcommand=self.grades_scrollbar.set)
+
+    def sort_grade_list(self):
+        grade_order = ['3-','3','3+','4-','4','4+','5-','5','5+',
+                       '6A','6A+','6B','6B+','6C','6C+',
+                       '7A','7A+','7B','7B+','7C','7C+']
+        count = 0
+        while count < len(grade_order):
+            if grade_order[count] not in self.grades:
+                grade_order.remove(grade_order[count])
+            else:
+                count += 1
+        for grade in self.grades:
+            if grade not in grade_order:
+                grade_order.append(grade)
+        return grade_order
 
     def update_routes_listbox(self, event=None):
         grade_indices = self.grades_listbox.curselection()

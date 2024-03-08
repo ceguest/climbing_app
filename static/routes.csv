@@ -1,12 +1,12 @@
 route_id;route_name;specials;holds;grade;setter;date_set
-1;LH throw;16, 20, 80;15, 53, 62;?;Claire;01/02/2024
+1;LH throw;16, 20, 80;15, 53, 62;TBC;Claire;01/02/2024
 2;Left layback;13, 75;21, 28, 61;4;Claire;01/02/2024
 3;Green one;6, 16, 63;37, 47;4;Claire;31/01/2024
-4;Mean green one;6, 16, 76;37, 47, 63;?;Claire;31/01/2024
+4;Mean green one;6, 16, 76;37, 47, 63;TBC;Claire;31/01/2024
 5;Left ladder A;12, 21, 75;29, 42, 60;4;Tom;08/02/2024
-6;Left ladder B;12, 21, 75;12, 21, 42, 60;?;Tom;08/02/2024
-7;Low L, High R A;12, 21, 80;28, 50, 62;?;Tom;08/02/2024
-8;Low L, High R B;12, 21, 79;28, 50, 62;?;Tom;08/02/2024
+6;Left ladder B;12, 21, 75;12, 21, 42, 60;TBC;Tom;08/02/2024
+7;Low L, High R A;12, 21, 80;28, 50, 62;TBC;Tom;08/02/2024
+8;Low L, High R B;12, 21, 79;28, 50, 62;TBC;Tom;08/02/2024
 9;Route 9;17, 79;48;TBC;Tom;16/02/2024
 10;Right Pinch;15, 38, 79;48, 69;TBC;Tom;16/02/2024
 11;Pink Dots;17, 74;67, 23, 22, 44;TBC;Dan + Sam;25/01/2024
@@ -23,6 +23,6 @@ route_id;route_name;specials;holds;grade;setter;date_set
 22;The one with the white hold;10, 75;23, 28, 61;4;Claire;21/02/2024
 23;Grey Dots;15, 20, 74;70, 28, 62;TBC;Dan + Sam;28/02/2024
 24;Don't Cut Feet;17, 72;15, 33, 45, 59;6C;Tom;28/02/2024
-25;L pinch and cross;79, 13;44, 61;5?;Claire;05/03/2024
+25;L pinch and cross;79, 13;44, 61;5;Claire;05/03/2024
 26;Dark wood L;1, 4, 73;8, 12, 29, 56, 21, 59;6A+;Tom;06/03/2024
 27;Snake Charmer;1, 8, 78;12, 33, 15, 36, 71;6B+;Tom;06/03/2024
