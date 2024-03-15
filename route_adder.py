@@ -121,7 +121,7 @@ class RouteAdder:
 
         grade = sd.askstring(title="Grade",
                              prompt="Enter a grade for the route:",
-                             initialvalue="TBC")
+                             initialvalue="TBC").upper()
         if grade is None:
             grade = "TBC"
 
