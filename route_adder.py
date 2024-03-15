@@ -2,6 +2,7 @@ import cv2
 import pandas as pd
 
 from hold_handler import HoldHandler
+##from route_handler import RouteHandler
 from datetime import datetime as dt
 from tkinter import simpledialog as sd
 
@@ -104,6 +105,27 @@ class RouteAdder:
 
                 cv2.imshow('image', img)
 
+    def check_route_exists(self):
+        all_routes_df = pd.read_csv('static/routes.csv', sep=";")
+        
+        new_route_all_holds = list(set(self.route_holds + self.special_holds))
+        new_route_all_holds.sort()
+        
+        for i in range(len(all_routes_df)):
+            route_data = all_routes_df.iloc[i]
+            test = all_routes_df.loc[all_routes_df['route_id']==int(i+1)]
+            route_specials = route_data['specials'].split(',')
+            route_specials = [int(x) for x in route_specials]
+            route_holds = route_data['holds'].split(',')
+            route_holds = [int(x) for x in route_holds]
+            route_all_holds = list(set(route_specials + route_holds))
+            route_all_holds.sort()
+            if route_all_holds == new_route_all_holds:
+                route_nr = route_data['route_id']
+                route_name = route_data['route_name']
+                return True, route_nr, route_name
+        return False, None, None
+            
     def append_route(self):
         df2 = pd.read_csv('static/routes.csv', sep=';')
         lastRouteID = df2['route_id'].iat[-1]
