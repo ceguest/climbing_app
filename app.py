@@ -77,6 +77,7 @@ class TkApp:
 
     def add_route(self):
         self.root.attributes('-fullscreen',False)
+        self.root.withdraw()
         route_adder = RouteAdder()
         route_adder.create_route()
         check_route_exists, route_nr, route_name = route_adder.check_route_exists()

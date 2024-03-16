@@ -1,5 +1,4 @@
 TODO
-* make window size better
 * add route notes
 * add method to update routes
 * add method to update holds picture
@@ -14,9 +13,11 @@ TODO
 Bugs
 * grade listbox needs to update after a new route is added
 * there is an error being thrown and not caught by something in route adder
+* check_route_exists doesn't work if any route has a blank field (holds or specials)
 
 Done
 * make routes in listbox have id, name and grade
 * create grade filter
 * add method to add routes
 * add method of adding name, setter etc
+* make window size better

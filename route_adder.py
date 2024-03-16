@@ -38,6 +38,7 @@ class RouteAdder:
         cv2.putText(self.base_img, special_hold_message, (1400, 2800), font, 1.5, (255, 255, 255), 5)
         cv2.putText(self.base_img, remove_hold_message, (1400, 2900), font, 1.5, (255, 255, 255), 5)
         cv2.imshow('image', self.base_img)
+        cv2.setWindowProperty('image', cv2.WND_PROP_TOPMOST, 1)
         cv2.setMouseCallback('image', self.click_event)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
