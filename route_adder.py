@@ -4,6 +4,7 @@ import pandas as pd
 from hold_handler import HoldHandler
 ##from route_handler import RouteHandler
 from datetime import datetime as dt
+from tkinter import Toplevel
 from tkinter import simpledialog as sd
 
 
@@ -137,21 +138,27 @@ class RouteAdder:
                                  initialvalue="Route " + str(newRouteID))
         if routeName is None:
             routeName = "Route " + str(newRouteID)
+        else:routeName = routeName.title()
+            
 
         specials = self.string_holds(self.special_holds)
         holds = self.string_holds(self.route_holds)
 
         grade = sd.askstring(title="Grade",
                              prompt="Enter a grade for the route:",
-                             initialvalue="TBC").upper()
+                             initialvalue="TBC")
         if grade is None:
             grade = "TBC"
+        else:
+            grade = grade.upper()
 
         setter = sd.askstring(title="Setter",
                               prompt="Enter the route setter",
                               initialvalue="Unconfirmed")
         if setter is None:
             setter = "UNCONFIRMED"
+        else:
+            setter = setter.title()
 
         dateSet = dt.today().strftime('%d/%m/%Y')
 
