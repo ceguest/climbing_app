@@ -99,6 +99,9 @@ class TkApp:
         self.root.attributes('-fullscreen',True)
         self.route_handler.read_routes()
         self.update_routes_listbox()
+        self.grades_listbox.destroy()
+        self.create_grade_filter(row=31, column=3, rowspan=18, columnspan=1)
+        self.root.update_idletasks()
 
     def create_route_canvas(self, row, column, rowspan, columnspan):
         self.canvas = Canvas(self.root, width=self.img_width,
