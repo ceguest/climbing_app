@@ -38,33 +38,32 @@ class TkApp:
         self.root.update_idletasks()
 
     def get_window_dims(self):
-        self.root.attributes('-fullscreen',True)
-        self.root.resizable(width = False, height = False)
+        self.root.attributes('-fullscreen', True)
+        self.root.resizable(width=False, height=False)
         self.root.update_idletasks()
         self.window_width = self.root.winfo_width()
         self.window_height = self.root.winfo_height()
 
     def setup_window_grid(self):
         self.img_height = self.window_height
-        self.img_width = self.img_height / 0.75 # Maintains 4:3 ratio
+        self.img_width = self.img_height / 0.75  # Maintains 4:3 ratio
         self.list_width = self.window_width - self.img_width
 
         self.routes_height = 0.6 * self.window_height
         self.grades_height = 0.2 * self.window_height
         self.buttons_height = 0.1 * self.window_height
 
-        self.root.rowconfigure(0, minsize = self.routes_height)
-        self.root.rowconfigure(1, minsize = self.grades_height)
+        self.root.rowconfigure(0, minsize=self.routes_height)
+        self.root.rowconfigure(1, minsize=self.grades_height)
 
-        self.root.columnconfigure(0, minsize = self.img_width)
-        self.root.columnconfigure(1, minsize = self.list_width)
+        self.root.columnconfigure(0, minsize=self.img_width)
+        self.root.columnconfigure(1, minsize=self.list_width)
 
     def get_base_image(self):
         img = IM.open(BASE_IMAGE)
-##        width, height = img.size
+        ##        width, height = img.size
         img_res = img.resize((int(self.img_width), int(self.img_height)))
         return img_res
-
 
     def convert_cv2_to_pil(self, img):
         # Rearrange the color channel
@@ -76,17 +75,17 @@ class TkApp:
         return im
 
     def add_route(self):
-        self.root.attributes('-fullscreen',False)
+        self.root.attributes('-fullscreen', False)
         self.root.withdraw()
         route_adder = RouteAdder()
         route_adder.create_route()
         check_route_exists, route_nr, route_name = route_adder.check_route_exists()
         if check_route_exists == True:
-            info_message = ('The holds you have selected already form route number '+
+            info_message = ('The holds you have selected already form route number ' +
                             str(route_nr) + " - " + route_name +
                             ' so your new route cannot be created.')
-            info = messagebox.showwarning(title = None,
-                                          message = info_message)
+            info = messagebox.showwarning(title=None,
+                                          message=info_message)
         else:
             check_add_route = messagebox.askquestion(title=None,
                                                      message='Do you want to save your new route?',
@@ -96,12 +95,21 @@ class TkApp:
             if check_add_route == 'yes':
                 route_adder.append_route()
         self.root.deiconify()
-        self.root.attributes('-fullscreen',True)
+        self.root.attributes('-fullscreen', True)
         self.route_handler.read_routes()
         self.update_routes_listbox()
-        self.grades_listbox.destroy()
-        self.create_grade_filter(row=31, column=3, rowspan=18, columnspan=1)
-        self.root.update_idletasks()
+
+        self.grades_listbox.delete(0, END)
+        self.grades = route_handler.get_grades()
+        sorted_grades = self.sort_grade_list()
+        x = 1
+        for grade in sorted_grades:
+            self.grades_listbox.insert(x, grade)
+            x += 1
+
+        # self.grades_listbox.destroy()
+        # self.create_grade_filter(row=31, column=3, rowspan=18, columnspan=1)
+        # self.root.update_idletasks()
 
     def create_route_canvas(self, row, column, rowspan, columnspan):
         self.canvas = Canvas(self.root, width=self.img_width,
@@ -111,11 +119,12 @@ class TkApp:
 
     def create_routes_listbox(self, row, column, rowspan, columnspan):
 
-        self.route_entry_frame = Frame(self.root, width = self.list_width,
-                                       height = self.routes_height)
+        self.route_entry_frame = Frame(self.root, width=self.list_width,
+                                       height=self.routes_height)
         self.route_entry_frame.grid_propagate(0)
         self.route_entry_frame.rowconfigure(1, weight=1)
-        
+        self.route_entry_frame.columnconfigure(0, weight=1)
+
         route_entry_label = Label(self.route_entry_frame, text="Select route:")
         route_entry_label.grid(row=0, column=0, rowspan=1, columnspan=1)
 
@@ -127,7 +136,7 @@ class TkApp:
             self.routes_listbox.insert(x, list_string)
             x += 1
         self.routes_listbox.grid_propagate(0)
-        self.routes_listbox.grid(row=1, column=0, rowspan= 1, sticky='NESW')
+        self.routes_listbox.grid(row=1, column=0, rowspan=1, sticky='NESW')
         self.routes_listbox.bind("<<ListboxSelect>>", self.update_route)
         self.routes_listbox.bind("<Down>", self.OnEntryUpDown_routes_listbox)
         self.routes_listbox.bind("<Up>", self.OnEntryUpDown_routes_listbox)
@@ -139,15 +148,16 @@ class TkApp:
                                           orient='vertical')
         self.routes_scrollbar.config(command=self.routes_listbox.yview)
         self.routes_scrollbar.grid(row=1, column=1, rowspan=1, columnspan=1,
-                                   sticky=(N,E,S,W))
+                                   sticky=(N, E, S, W))
         self.routes_listbox.config(yscrollcommand=self.routes_scrollbar.set)
 
     def create_grade_filter(self, row, column, rowspan, columnspan):
 
-        self.grade_entry_frame = Frame(self.root, width = self.list_width,
-                                       height = self.grades_height)
+        self.grade_entry_frame = Frame(self.root, width=self.list_width,
+                                       height=self.grades_height)
         self.grade_entry_frame.grid_propagate(0)
         self.grade_entry_frame.rowconfigure(1, weight=1)
+        self.grade_entry_frame.columnconfigure(0, weight=1)
         grade_entry_label = Label(self.grade_entry_frame, text="Select grades:")
         grade_entry_label.grid(row=0, column=0, rowspan=1, columnspan=1)
         self.grades = self.route_handler.get_grades()
@@ -161,7 +171,7 @@ class TkApp:
             self.grades_listbox.insert(x, grade)
             x += 1
         self.grades_listbox.grid(row=1, column=0, rowspan=1, columnspan=1,
-                                 sticky=(N,E,S,W))
+                                 sticky=(N, E, S, W))
         self.grades_listbox.bind("<<ListboxSelect>>", self.update_routes_listbox)
 
         self.grade_entry_frame.grid(row=row, column=column, rowspan=rowspan,
@@ -169,15 +179,15 @@ class TkApp:
 
         self.grades_scrollbar = Scrollbar(self.grade_entry_frame,
                                           orient='vertical')
-        self.grades_scrollbar.config(command = self.grades_listbox.yview)
+        self.grades_scrollbar.config(command=self.grades_listbox.yview)
         self.grades_scrollbar.grid(row=1, column=1, rowspan=1, columnspan=1,
                                    sticky=('NESW'))
         self.grades_listbox.config(yscrollcommand=self.grades_scrollbar.set)
 
     def sort_grade_list(self):
-        grade_order = ['3-','3','3+','4-','4','4+','5-','5','5+',
-                       '6A','6A+','6B','6B+','6C','6C+',
-                       '7A','7A+','7B','7B+','7C','7C+']
+        grade_order = ['3-', '3', '3+', '4-', '4', '4+', '5-', '5', '5+',
+                       '6A', '6A+', '6B', '6B+', '6C', '6C+',
+                       '7A', '7A+', '7B', '7B+', '7C', '7C+']
         count = 0
         while count < len(grade_order):
             if grade_order[count] not in self.grades:
@@ -238,16 +248,16 @@ class TkApp:
         button_frame = Frame(self.root, width=self.list_width,
                              height=self.buttons_height)
         button_frame.grid_propagate(0)
-        
+
         add_route_button = Button(button_frame, text="Add route",
                                   command=self.add_route)
-        add_route_button.pack(side = LEFT, padx = self.list_width/20)
-##        add_route_button.grid(row=2, column=1, rowspan=1, columnspan=1)
+        add_route_button.pack(side=LEFT, padx=self.list_width / 20)
+        ##        add_route_button.grid(row=2, column=1, rowspan=1, columnspan=1)
 
         quit_button = Button(button_frame, text='Quit',
                              command=self.root.destroy)
-        quit_button.pack(side = RIGHT, padx = self.list_width/20)
-##        quit_button.grid(row=2, column=1, rowspan=1, columnspan=1)
+        quit_button.pack(side=RIGHT, padx=self.list_width / 20)
+        ##        quit_button.grid(row=2, column=1, rowspan=1, columnspan=1)
 
         button_frame.grid(row=row, column=column, rowspan=rowspan,
                           columnspan=columnspan, sticky='NESW')
