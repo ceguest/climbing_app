@@ -4,6 +4,7 @@ import pandas as pd
 from hold_handler import HoldHandler
 ##from route_handler import RouteHandler
 from datetime import datetime as dt
+from tkinter import Toplevel
 from tkinter import simpledialog as sd
 
 
@@ -37,6 +38,7 @@ class RouteAdder:
         cv2.putText(self.base_img, special_hold_message, (1400, 2800), font, 1.5, (255, 255, 255), 5)
         cv2.putText(self.base_img, remove_hold_message, (1400, 2900), font, 1.5, (255, 255, 255), 5)
         cv2.imshow('image', self.base_img)
+        cv2.setWindowProperty('image', cv2.WND_PROP_TOPMOST, 1)
         cv2.setMouseCallback('image', self.click_event)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
@@ -137,21 +139,27 @@ class RouteAdder:
                                  initialvalue="Route " + str(newRouteID))
         if routeName is None:
             routeName = "Route " + str(newRouteID)
+        else:routeName = routeName.title()
+            
 
         specials = self.string_holds(self.special_holds)
         holds = self.string_holds(self.route_holds)
 
         grade = sd.askstring(title="Grade",
                              prompt="Enter a grade for the route:",
-                             initialvalue="TBC").upper()
+                             initialvalue="TBC")
         if grade is None:
             grade = "TBC"
+        else:
+            grade = grade.upper()
 
         setter = sd.askstring(title="Setter",
                               prompt="Enter the route setter",
                               initialvalue="Unconfirmed")
         if setter is None:
             setter = "UNCONFIRMED"
+        else:
+            setter = setter.title()
 
         dateSet = dt.today().strftime('%d/%m/%Y')
 
