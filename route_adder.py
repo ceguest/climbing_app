@@ -6,7 +6,6 @@ from hold_handler import HoldHandler
 from datetime import datetime as dt
 from tkinter import Toplevel
 from tkinter import simpledialog as sd
-from math import isnan
 
 
 class RouteAdder:
