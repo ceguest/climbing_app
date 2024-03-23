@@ -139,8 +139,14 @@ class RouteAdder:
                                  initialvalue="Route " + str(newRouteID))
         if routeName is None:
             routeName = "Route " + str(newRouteID)
-        else:routeName = routeName.title()
-            
+        else:
+            routeName = routeName.title()
+
+        comments = sd.askstring(title="Comments",
+                               prompt="Enter any comments",
+                               initialvalue="")
+        if comments is None:
+            comments = ""
 
         specials = self.string_holds(self.special_holds)
         holds = self.string_holds(self.route_holds)
@@ -169,7 +175,8 @@ class RouteAdder:
                 'holds': holds,
                 'grade': grade,
                 'setter': setter,
-                'date_set': dateSet
+                'date_set': dateSet,
+                'comments': comments
                 }
 
         df3 = pd.DataFrame(data, index=[0])
