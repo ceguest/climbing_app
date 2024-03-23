@@ -6,6 +6,7 @@ from hold_handler import HoldHandler
 from datetime import datetime as dt
 from tkinter import Toplevel
 from tkinter import simpledialog as sd
+from math import isnan
 
 
 class RouteAdder:
@@ -116,10 +117,16 @@ class RouteAdder:
         for i in range(len(all_routes_df)):
             route_data = all_routes_df.iloc[i]
             test = all_routes_df.loc[all_routes_df['route_id']==int(i+1)]
-            route_specials = route_data['specials'].split(',')
-            route_specials = [int(x) for x in route_specials]
-            route_holds = route_data['holds'].split(',')
-            route_holds = [int(x) for x in route_holds]
+            try:
+                route_specials = route_data['specials'].split(',')
+                route_specials = [int(x) for x in route_specials]
+            except:
+                route_specials = []
+            try:
+                route_holds = route_data['holds'].split(',')
+                route_holds = [int(x) for x in route_holds]
+            except:
+                route_holds = []
             route_all_holds = list(set(route_specials + route_holds))
             route_all_holds.sort()
             if route_all_holds == new_route_all_holds:
