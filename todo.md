@@ -12,7 +12,6 @@ TODO
 Bugs
 * there is an error being thrown and not caught by something in route adder
   ** this is if a click event happens outside the parameters of the hold location + tolerance i.e. no hold ID returned so can't continue next command with blank parameter **
-* check_route_exists doesn't work if any route has a blank field (holds or specials)
 
 Done
 * make routes in listbox have id, name and grade
@@ -23,3 +22,4 @@ Done
 * stop add route needing basic layout
 * grade listbox needs to update after a new route is added
 * add route notes
+* BUG - check_route_exists doesn't work if any route has a blank field (holds or specials)
