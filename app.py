@@ -123,6 +123,8 @@ class TkApp:
 
         self.routes_listbox = Listbox(self.route_entry_frame, selectmode=SINGLE,
                                       exportselection=False)
+        
+        x=1
 
         for index in self.route_handler.routes_df.index:
             list_string = f"{self.route_handler.routes_df['route_id'][index]}: {self.route_handler.routes_df['route_name'][index]} ({self.route_handler.routes_df['grade'][index]})"
