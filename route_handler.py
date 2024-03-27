@@ -33,7 +33,8 @@ class RouteHandler:
             name=route_data["route_name"].values[0],
             specials=specials,
             holds=holds,
-            grade=route_data["grade"].values[0]
+            grade=route_data["grade"].values[0],
+            comments=route_data["comments"].values[0]
         )
         return route
 

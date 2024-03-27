@@ -1,5 +1,5 @@
 TODO
-* add route notes
+* remove naming clash 'id' throughout route handler etc (existing function)
 * add method to update routes
 * add method to update holds picture
 * footholds
@@ -21,4 +21,5 @@ Done
 * make window size better
 * stop add route needing basic layout
 * grade listbox needs to update after a new route is added
+* add route notes
 * BUG - check_route_exists doesn't work if any route has a blank field (holds or specials)
