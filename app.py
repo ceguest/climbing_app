@@ -36,22 +36,22 @@ class TkApp:
         self.create_buttons(row=2, column=1, rowspan=1, columnspan=1)
 
         self.root.update_idletasks()
+        self.root.resizable(0,0)
+
 
     def get_window_dims(self):
-        self.root.attributes('-fullscreen', True)
-        self.root.resizable(width=False, height=False)
-        self.root.update_idletasks()
-        self.window_width = self.root.winfo_width()
-        self.window_height = self.root.winfo_height()
+        self.root.state('zoomed')
+        self.width = self.root.winfo_width()
+        self.height = self.root.winfo_height()
 
     def setup_window_grid(self):
-        self.img_height = self.window_height
+        self.img_height = self.height
         self.img_width = self.img_height / 0.75  # Maintains 4:3 ratio
-        self.list_width = self.window_width - self.img_width
+        self.list_width = self.width - self.img_width
 
-        self.routes_height = 0.6 * self.window_height
-        self.grades_height = 0.2 * self.window_height
-        self.buttons_height = 0.1 * self.window_height
+        self.routes_height = 0.6 * self.height
+        self.grades_height = 0.2 * self.height
+        self.buttons_height = 0.1 * self.height
 
         self.root.rowconfigure(0, minsize=self.routes_height)
         self.root.rowconfigure(1, minsize=self.grades_height)
@@ -61,7 +61,6 @@ class TkApp:
 
     def get_base_image(self):
         img = IM.open(BASE_IMAGE)
-        ##        width, height = img.size
         img_res = img.resize((int(self.img_width), int(self.img_height)))
         return img_res
 
@@ -75,7 +74,6 @@ class TkApp:
         return im
 
     def add_route(self):
-        self.root.attributes('-fullscreen', False)
         self.root.withdraw()
         route_adder = RouteAdder()
         route_adder.create_route()
@@ -95,7 +93,6 @@ class TkApp:
             if check_add_route == 'yes':
                 route_adder.append_route()
         self.root.deiconify()
-        self.root.attributes('-fullscreen', True)
         self.route_handler.read_routes()
         self.update_routes_listbox()
 
@@ -106,10 +103,6 @@ class TkApp:
         for grade in sorted_grades:
             self.grades_listbox.insert(x, grade)
             x += 1
-
-        # self.grades_listbox.destroy()
-        # self.create_grade_filter(row=31, column=3, rowspan=18, columnspan=1)
-        # self.root.update_idletasks()
 
     def create_route_canvas(self, row, column, rowspan, columnspan):
         self.canvas = Canvas(self.root, width=self.img_width,
@@ -148,7 +141,7 @@ class TkApp:
                                           orient='vertical')
         self.routes_scrollbar.config(command=self.routes_listbox.yview)
         self.routes_scrollbar.grid(row=1, column=1, rowspan=1, columnspan=1,
-                                   sticky=(N, E, S, W))
+                                   sticky=(N, E, S, W), padx=(0,10))
         self.routes_listbox.config(yscrollcommand=self.routes_scrollbar.set)
 
     def create_grade_filter(self, row, column, rowspan, columnspan):
@@ -175,13 +168,13 @@ class TkApp:
         self.grades_listbox.bind("<<ListboxSelect>>", self.update_routes_listbox)
 
         self.grade_entry_frame.grid(row=row, column=column, rowspan=rowspan,
-                                    columnspan=columnspan, sticky='NESW')
+                                    columnspan=columnspan, sticky=(N, E, S, W))
 
         self.grades_scrollbar = Scrollbar(self.grade_entry_frame,
                                           orient='vertical')
         self.grades_scrollbar.config(command=self.grades_listbox.yview)
         self.grades_scrollbar.grid(row=1, column=1, rowspan=1, columnspan=1,
-                                   sticky=('NESW'))
+                                   sticky=(N, E, S, W), padx=(0,10))
         self.grades_listbox.config(yscrollcommand=self.grades_scrollbar.set)
 
     def sort_grade_list(self):
