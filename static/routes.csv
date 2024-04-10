@@ -7,7 +7,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 6;Left ladder B;12, 21, 75;12, 21, 42, 60;TBC;Tom;08/02/2024;
 7;Low L, High R A;12, 21, 80;28, 50, 62;TBC;Tom;08/02/2024;
 8;Low L, High R B;12, 21, 79;28, 50, 62;TBC;Tom;08/02/2024;
-9;Route 9;17, 79;48;TBC;Tom;16/02/2024;
+9;2 Long Moves;17, 79;48;TBC;Tom;16/02/2024;Good on orange feet
 10;Right Pinch;15, 38, 79;48, 69;TBC;Tom;16/02/2024;
 11;Pink Dots;17, 74;67, 23, 22, 44;TBC;Dan + Sam;25/01/2024;
 12;Undercut + roll;10;14, 28, 62, 69, 78;TBC;Claire;16/02/2024;
@@ -21,24 +21,28 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 20;Undercuts + crimps;10, 73;24, 22, 59;TBC;Claire;21/02/2024;
 21;Bump, roll, stretch;5, 17, 77;39, 51;TBC;Tom;21/02/2024;
 22;The one with the white hold;10, 75;23, 28, 61;4;Claire;21/02/2024;
-23;Grey Dots;15, 20, 74;70, 28, 62;TBC;Dan + Sam;28/02/2024;
+23;Grey Dots;15, 20, 74;70, 28, 62;6A+;Dan + Sam;28/02/2024;
 24;Don't Cut Feet;17, 72;15, 33, 45, 59;6C;Tom;28/02/2024;
 25;L pinch and cross;79, 13;44, 61;5;Claire;05/03/2024;
-26;Dark wood L;1, 4, 73;8, 12, 29, 56, 21, 59;6A+;Tom;06/03/2024;
+26;Dark wood L;1, 4, 73;8, 12, 29, 56, 21, 59;6A+;Tom;06/03/2024;Sequential Hands
 27;Snake Charmer;1, 8, 78;12, 33, 15, 36, 71;6B+;Tom;06/03/2024;
 28;Fig8;10, 74;42, 60, 61, 81, 70, 39, 18, 13, 34, 30, 48;5+;Tom;12/03/2024;No match or reuse
 29;Dark Orange Dots;17, 75;52, 58;6B;Dan + Sam;12/03/2024;
-30;Kinda Crimpy;11, 78;32, 59;Project;Tom;12/03/2024;
-31;Also Kinda Crimpy;17, 82;67, 64;6B;Tom;12/03/2024;
-32;Yellow Crimps;17, 82;40, 64;Project;Tom;12/03/2024;
-33;Pull + cross;10, 82, 83;61, 65;6A+;Tom;12/03/2024;
+30;Kinda Crimpy;11, 78;32, 59;6B+;Tom;12/03/2024;
+31;Also Kinda Crimpy;17, 82;67, 64;6B+;Tom;12/03/2024;
+32;Yellow Crimps;17, 82;40, 64;PROJECT;Tom;12/03/2024;
+33;Pull + cross;10, 82, 83;61, 65;6A+;Tom;12/03/2024;No Matching
 34;Gaston big;13, 81;39, 51;5+;Tom;12/03/2024;
 35;Gaston small;15, 12, 78;29, 36, 50;6A+;Tom;12/03/2024;
 36;Light blue dots mod;18, 41, 75;36, 34, 60;6A+;Tom;12/03/2024;
 37;Shoulder Stability;1, 12, 78;21, 36, 59;6B;Tom;12/03/2024;
-38;Kinda Crimpy Regression;11, 78;32, 58;6B+;Tom;20/03/2024;
+38;Kinda Crimpy Regression;11, 78;32, 58;6B;Tom;20/03/2024;
 39;Claire Gaston Right;14, 78;34, 60;6A;Tom;20/03/2024;
 40;Claire Gaston Left;14, 77;30, 62;6A;Tom;20/03/2024;
-41;Baby Beast [Finish On Bm Mid Sloper];5, 15, 78;37, 30;5+;Claire;20/03/2024;
+41;Baby Beast;5, 15, 78;37, 30;5+;Claire;20/03/2024;Finish on BM middle sloper
 42;Purple Dots;17, 79;52;6A;Dan + Sam;20/03/2024;
-43;Boomerang [Green Feet, No Reuse];8, 1, 75;12, 21, 29, 33, 36, 50, 65, 56, 59;6B+;Tom;20/03/2024;
+43;Boomerang;8, 1, 75;12, 21, 29, 33, 36, 50, 65, 56, 59;6B+;Tom;20/03/2024;Green feet. Sequential hands, no re-use
+44;Light Green Dots Mod;1, 4, 81;21, 61;6A;Tom;27/03/2024;
+45;Dark Pink Dots;5, 3, 78;38;TBC;Dan + Sam;27/03/2024;
+46;Roomerbang;5, 3, 78;38, 15, 33, 21, 59, 56, 65;6B+;Tom;27/03/2024;Green feet. Sequential hands, no re-use
+47;Brown Dots;4, 33, 81;39;5+;Dan + Sam;09/04/2024;
