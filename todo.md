@@ -7,7 +7,8 @@ TODO
   * with a project column containing a list of names?
   * would have to have a way of editing routes to add/remove project
   * maybe have an advanced filter in pop out?
-* check for duplicate routes
+* update 47 (Brown Dots) to have correct holds and updated grade
+* add different grading for different footholds
 
 Bugs
 * there is an error being thrown and not caught by something in route adder
@@ -23,3 +24,5 @@ Done
 * grade listbox needs to update after a new route is added
 * add route notes
 * BUG - check_route_exists doesn't work if any route has a blank field (holds or specials)
+* check for duplicate routes
+

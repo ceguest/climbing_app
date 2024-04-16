@@ -9,13 +9,13 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 8;Low L, High R B;12, 21, 79;28, 50, 62;TBC;Tom;08/02/2024;
 9;2 Long Moves;17, 79;48;TBC;Tom;16/02/2024;Good on orange feet
 10;Right Pinch;15, 38, 79;48, 69;TBC;Tom;16/02/2024;
-11;Pink Dots;17, 74;67, 23, 22, 44;TBC;Dan + Sam;25/01/2024;
+11;Pink Dots;17, 74;67, 23, 22, 44;6B;Dan + Sam;25/01/2024;
 12;Undercut + roll;10;14, 28, 62, 69, 78;TBC;Claire;16/02/2024;
 13;Route 13;11, 73;44, 59;TBC;Tom;16/02/2024;
 14;Black Dots Mod;8, 12, 80;29, 50;TBC;Tom;16/02/2024;
 15;Black Dots;8, 12, 80;50;TBC;Dan + Sam;25/01/2024;
 16;Route 16;4, 12, 78;32, 59;TBC;Tom;16/02/2024;
-17;Hard on red feet;3, 20, 78;15, 38, 36, 53, 65, 71;TBC;Tom;21/02/2024;
+17;Tik-Tak;3, 20, 78;15, 38, 36, 53, 65, 71;6B;Tom;21/02/2024;Red feet
 18;Left crimps 18;4, 21, 73;29, 56, 59;TBC;Claire;21/02/2024;
 19;Orange Dots;14, 74;65, 59, 56;TBC;Dan + Sam;25/01/2024;
 20;Undercuts + crimps;10, 73;24, 22, 59;TBC;Claire;21/02/2024;
@@ -24,7 +24,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 23;Grey Dots;15, 20, 74;70, 28, 62;6A+;Dan + Sam;28/02/2024;
 24;Don't Cut Feet;17, 72;15, 33, 45, 59;6C;Tom;28/02/2024;
 25;L pinch and cross;79, 13;44, 61;5;Claire;05/03/2024;
-26;Dark wood L;1, 4, 73;8, 12, 29, 56, 21, 59;6A+;Tom;06/03/2024;Sequential Hands
+26;Dark wood L;1, 4, 73;8, 12, 29, 56, 21, 59;6A+;Tom;06/03/2024;Sequential Hands, 6B+ on green feet
 27;Snake Charmer;1, 8, 78;12, 33, 15, 36, 71;6B+;Tom;06/03/2024;
 28;Fig8;10, 74;42, 60, 61, 81, 70, 39, 18, 13, 34, 30, 48;5+;Tom;12/03/2024;No match or reuse
 29;Dark Orange Dots;17, 75;52, 58;6B;Dan + Sam;12/03/2024;
@@ -47,3 +47,5 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 46;Roomerbang;5, 3, 78;38, 15, 33, 21, 59, 56, 65;6B+;Tom;27/03/2024;Green feet. Sequential hands, no re-use
 47;Brown Dots;4, 33, 81;39;5+;Dan + Sam;09/04/2024;
 48;Squish Squish Bish;14, 77;62, 60;5+;Claire;10/04/2024;
+49;Dark Blue Dots;20, 15, 75;36, 29, 59;TBC;Dan + Sam;16/04/2024;
+50;Once In A Brown Moon;11, 79;22, 59;6B;Tom;16/04/2024;Green feet, no matching
