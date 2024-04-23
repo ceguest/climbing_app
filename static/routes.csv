@@ -11,14 +11,14 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 10;Right Pinch;15, 38, 79;48, 69;TBC;Tom;16/02/2024;
 11;Pink Dots;17, 74;67, 23, 22, 44;6B;Dan + Sam;25/01/2024;
 12;Undercut + roll;10;14, 28, 62, 69, 78;TBC;Claire;16/02/2024;
-13;Route 13;11, 73;44, 59;TBC;Tom;16/02/2024;
+13;Route 13;11, 73;44, 59;6A;Tom;16/02/2024;
 14;Black Dots Mod;8, 12, 80;29, 50;TBC;Tom;16/02/2024;
 15;Black Dots;8, 12, 80;50;TBC;Dan + Sam;25/01/2024;
-16;Route 16;4, 12, 78;32, 59;TBC;Tom;16/02/2024;
+16;Kinda Crispy Alt Start;4, 12, 78;32, 59;6A+;Tom;16/02/2024;
 17;Tik-Tak;3, 20, 78;15, 38, 36, 53, 65, 71;6B;Tom;21/02/2024;Red feet
-18;Left crimps 18;4, 21, 73;29, 56, 59;TBC;Claire;21/02/2024;
-19;Orange Dots;14, 74;65, 59, 56;TBC;Dan + Sam;25/01/2024;
-20;Undercuts + crimps;10, 73;24, 22, 59;TBC;Claire;21/02/2024;
+18;Left Crimps;4, 21, 73;29, 56, 59;6A;Claire;21/02/2024;
+19;Orange Dots;14, 74;65, 59, 56;6A;Dan + Sam;25/01/2024;
+20;Undercuts + crimps;10, 73;24, 22, 59;6A+;Claire;21/02/2024;
 21;Bump, roll, stretch;5, 17, 77;39, 51;TBC;Tom;21/02/2024;
 22;The one with the white hold;10, 75;23, 28, 61;4;Claire;21/02/2024;
 23;Grey Dots;15, 20, 74;70, 28, 62;6A+;Dan + Sam;28/02/2024;
@@ -48,4 +48,5 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 47;Brown Dots;4, 33, 81;39;5+;Dan + Sam;09/04/2024;
 48;Squish Squish Bish;14, 77;62, 60;5+;Claire;10/04/2024;
 49;Dark Blue Dots;20, 15, 75;36, 29, 59;TBC;Dan + Sam;16/04/2024;
-50;Once In A Brown Moon;11, 79;22, 59;6B;Tom;16/04/2024;Green feet, no matching
+50;Once In A Brown Moon;11, 79;22, 58;6B;Tom;16/04/2024;Green feet, no matching
+51;King Of The Swingers;10, 80;54, 61, 70;5;Claire;23/04/2024;
