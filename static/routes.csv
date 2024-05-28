@@ -14,7 +14,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 13;Route 13;11, 73;44, 59;6A;Tom;16/02/2024;
 14;Black Dots Mod;8, 12, 80;29, 50;TBC;Tom;16/02/2024;
 15;Black Dots;8, 12, 80;50;TBC;Dan + Sam;25/01/2024;
-16;Kinda Crispy Alt Start;4, 12, 78;32, 59;6A+;Tom;16/02/2024;
+16;Kinda Crimpy Alt Start;4, 12, 78;32, 59;6A+;Tom;16/02/2024;
 17;Tik-Tak;3, 20, 78;15, 38, 36, 53, 65, 71;6B;Tom;21/02/2024;Red feet
 18;Left Crimps;4, 21, 73;29, 56, 59;6A;Claire;21/02/2024;
 19;Orange Dots;14, 74;65, 59, 56;6A;Dan + Sam;25/01/2024;
@@ -34,7 +34,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 33;Pull + cross;10, 82, 83;61, 65;6A+;Tom;12/03/2024;No Matching
 34;Gaston big;13, 81;39, 51;5+;Tom;12/03/2024;
 35;Gaston small;15, 12, 78;29, 36, 50;6A+;Tom;12/03/2024;
-36;Light blue dots mod;18, 41, 75;36, 34, 60;6A+;Tom;12/03/2024;
+36;Light blue dots mod;18, 41, 75;36, 34, 60;6A+;Tom;12/03/2024;No Matching
 37;Shoulder Stability;1, 12, 78;21, 36, 59;6B;Tom;12/03/2024;
 38;Kinda Crimpy Regression;11, 78;32, 58;6B;Tom;20/03/2024;
 39;Claire Gaston Right;14, 78;34, 60;6A;Tom;20/03/2024;
@@ -47,6 +47,8 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 46;Roomerbang;5, 3, 78;38, 15, 33, 21, 59, 56, 65;6B+;Tom;27/03/2024;Green feet. Sequential hands, no re-use
 47;Brown Dots;4, 33, 81;39;5+;Dan + Sam;09/04/2024;
 48;Squish Squish Bish;14, 77;62, 60;5+;Claire;10/04/2024;
-49;Dark Blue Dots;20, 15, 75;36, 29, 59;TBC;Dan + Sam;16/04/2024;
+49;Dark Blue Dots;20, 15, 75;36, 29, 59;6A+;Dan + Sam;16/04/2024;
 50;Once In A Brown Moon;11, 79;22, 58;6B;Tom;16/04/2024;Green feet, no matching
 51;King Of The Swingers;10, 80;54, 61, 70;5;Claire;23/04/2024;
+52;Tick Tack Boom;11, 78;33, 15;6B;Tom;28/05/2024;Green Feet
+53;Pretzl;20, 3, 77;33, 29, 56;6B;Tom;28/05/2024;Orange Feet
