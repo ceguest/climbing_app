@@ -20,7 +20,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 19;Orange Dots;14, 74;65, 59, 56;6A;Dan + Sam;25/01/2024;
 20;Undercuts + crimps;10, 73;24, 22, 59;6A+;Claire;21/02/2024;
 21;Bump, roll, stretch;5, 17, 77;39, 51;TBC;Tom;21/02/2024;
-22;The one with the white hold;10, 75;23, 28, 61;4;Claire;21/02/2024;
+22;The one with the white hold;10, 75;23, 28, 61;4;Claire;21/02/2024;Variation: swap L jug for pinch
 23;Grey Dots;15, 20, 74;70, 28, 62;6A+;Dan + Sam;28/02/2024;
 24;Don't Cut Feet;17, 72;15, 33, 45, 59;6C;Tom;28/02/2024;
 25;L pinch and cross;79, 13;44, 61;5;Claire;05/03/2024;(Except you don't actually cross!)
@@ -59,3 +59,4 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 58;Lots Of Lats;15, 5, 73;65, 56, 59;6C;Tom;16/07/2024;Red feet + orange R foot finish
 59;Light Blue Dots;18, 41, 75;34, 60;6A;Dan + Sam;24/07/2024;
 60;Plastic Fantastic;17, 77;32, 64;6C;Tom;24/07/2024;
+61;Reduced L Ladder;21, 12, 76, 77;60;4+;Claire;26/07/2024;
