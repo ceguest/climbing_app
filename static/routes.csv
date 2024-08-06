@@ -1,10 +1,10 @@
 route_id;route_name;specials;holds;grade;setter;date_set;comments
-1;LH throw;16, 20, 80;15, 53, 62;TBC;Claire;01/02/2024;
+1;LH throw;15, 20, 80;53, 62;4;Claire;01/02/2024;
 2;Left layback;13, 75;21, 28, 61;4;Claire;01/02/2024;
 3;Green one;6, 16, 63;37, 47;4;Claire;31/01/2024;
-4;Mean green one;6, 16, 76;37, 47, 63;TBC;Claire;31/01/2024;
+4;Mean green one;6, 16, 76;37, 47, 63;5+;Claire;31/01/2024;
 5;Left ladder A;12, 21, 75;29, 42, 60;4;Tom;08/02/2024;
-6;Left ladder B;12, 21, 75;12, 21, 42, 60;TBC;Tom;08/02/2024;
+6;Left ladder B;12, 21, 75;60;4+;Tom;08/02/2024;
 7;Low L, High R A;12, 21, 80;28, 50, 62;TBC;Tom;08/02/2024;
 8;Low L, High R B;12, 21, 79;28, 50, 62;TBC;Tom;08/02/2024;
 9;2 Long Moves;17, 79;48;TBC;Tom;16/02/2024;Good on orange feet
@@ -59,4 +59,6 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 58;Lots Of Lats;15, 5, 73;65, 56, 59;6C;Tom;16/07/2024;Red feet + orange R foot finish
 59;Light Blue Dots;18, 41, 75;34, 60;6A;Dan + Sam;24/07/2024;
 60;Plastic Fantastic;17, 77;32, 64;6C;Tom;24/07/2024;
-61;Reduced L Ladder;21, 12, 76, 77;60;4+;Claire;26/07/2024;
+61;Left Ladder C;21, 12, 75;42;5;Claire;06/08/2024;
+62;C Proj Wip;11, 12, 75;21, 29, 44, 60;TBC;Claire;06/08/2024;WIP route, tying to get better at rail start
+63;Almost Orange;19, 4, 79;49, 66;5;Claire;06/08/2024;Use the orange for start rather than the wooden one
