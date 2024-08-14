@@ -7,19 +7,19 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 6;Left ladder B;12, 21, 75;60;4+;Tom;08/02/2024;
 7;Low L, High R A;12, 21, 80;28, 50, 62;TBC;Tom;08/02/2024;
 8;Low L, High R B;12, 21, 79;28, 50, 62;TBC;Tom;08/02/2024;
-9;2 Long Moves;17, 79;48;TBC;Tom;16/02/2024;Good on orange feet
+9;2 Long Moves;17, 79;48;6A+;Tom;16/02/2024;Orange feet
 10;Right Pinch;15, 38, 79;48, 69;TBC;Tom;16/02/2024;
 11;Pink Dots;17, 74;67, 23, 22, 44;6B;Dan + Sam;25/01/2024;
-12;Undercut + roll;10;14, 28, 62, 69, 78;TBC;Claire;16/02/2024;
+12;Undercut + roll;10;14, 28, 62, 69, 78;5+;Claire;16/02/2024;
 13;Route 13;11, 73;44, 59;6A;Tom;16/02/2024;
 14;Black Dots Mod;8, 12, 80;29, 50;TBC;Tom;16/02/2024;
-15;Black Dots;8, 12, 80;50;TBC;Dan + Sam;25/01/2024;
+15;Black Dots;8, 12, 80;50;6B+;Dan + Sam;25/01/2024;Good project on green feet
 16;Kinda Crimpy Alt Start;4, 12, 78;32, 59;6A+;Tom;16/02/2024;
 17;Tik-Tak;3, 20, 78;15, 38, 36, 53, 65, 71;6B;Tom;21/02/2024;Red feet
 18;Left Crimps;4, 21, 73;29, 56, 59;6A;Claire;21/02/2024;Good with red + orange feet
 19;Orange Dots;14, 74;65, 59, 56;6A;Dan + Sam;25/01/2024;
 20;Undercuts + crimps;10, 73;24, 22, 59;6A+;Claire;21/02/2024;
-21;Bump, roll, stretch;5, 17, 77;39, 51;TBC;Tom;21/02/2024;
+21;Bump, roll, stretch;5, 17, 77;39, 51;6A+;Tom;21/02/2024;
 22;The one with the white hold;10, 75;23, 28, 61;4;Claire;21/02/2024;Variation: swap L jug for pinch
 23;Grey Dots;15, 20, 74;70, 28, 62;6A+;Dan + Sam;28/02/2024;
 24;Don't Cut Feet;17, 72;15, 33, 45, 59;6C;Tom;28/02/2024;
@@ -43,7 +43,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 42;Purple Dots;17, 79;52;6A;Dan + Sam;20/03/2024;
 43;Boomerang;8, 1, 75;12, 21, 29, 33, 36, 50, 65, 56, 59;6B+;Tom;20/03/2024;Green feet. Sequential hands, no re-use
 44;Light Green Dots Mod;1, 4, 81;21, 61;6A;Tom;27/03/2024;
-45;Dark Pink Dots;5, 3, 78;38;TBC;Dan + Sam;27/03/2024;
+45;Dark Pink Dots;5, 3, 78;38;6B;Dan + Sam;27/03/2024;
 46;Roomerbang;5, 3, 78;38, 15, 33, 21, 59, 56, 65;6B+;Tom;27/03/2024;Green feet. Sequential hands, no re-use
 47;Brown Dots;4, 33, 81;39;5+;Dan + Sam;09/04/2024;
 48;Squish Squish Bish;14, 77;62, 60;5+;Claire;10/04/2024;
@@ -60,5 +60,5 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 59;Light Blue Dots;18, 41, 75;34, 60;6A;Dan + Sam;24/07/2024;
 60;Plastic Fantastic;17, 77;32, 64;6C;Tom;24/07/2024;
 61;Left Ladder C;21, 12, 75;42;5;Claire;06/08/2024;
-62;C Proj Wip;11, 12, 75;21, 29, 44, 60;TBC;Claire;06/08/2024;WIP route, tying to get better at rail start
-63;Almost Orange;19, 4, 79;49, 66;5;Claire;06/08/2024;Use the orange for start rather than the wooden one
+62;C Proj Wip;11, 12, 75;21, 29, 44, 60;TBC;Claire;06/08/2024;WIP route, trying to get better at rail start
+63;Almost Orange;19, 4, 79;49, 66;5;Claire;06/08/2024;Orange for LH start rather than the wood
