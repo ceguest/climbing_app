@@ -13,7 +13,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 12;Undercut + roll;10;14, 28, 62, 69, 78;5+;Claire;16/02/2024;
 13;Route 13;11, 73;44, 59;6A;Tom;16/02/2024;
 14;Black Dots Mod;8, 12, 80;29, 50;TBC;Tom;16/02/2024;
-15;Black Dots;8, 12, 80;50;6B+;Dan + Sam;25/01/2024;Good project on green feet
+15;Black Dots;8, 12, 80;50;6B+;Dan + Sam;25/01/2024;Similar grade on green feet
 16;Kinda Crimpy Alt Start;4, 12, 78;32, 59;6A+;Tom;16/02/2024;
 17;Tik-Tak;3, 20, 78;15, 38, 36, 53, 65, 71;6B;Tom;21/02/2024;Red feet
 18;Left Crimps;4, 21, 73;29, 56, 59;6A;Claire;21/02/2024;Good with red + orange feet
@@ -30,7 +30,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 29;Dark Orange Dots;17, 75;52, 58;6B;Dan + Sam;12/03/2024;
 30;Kinda Crimpy;11, 78;32, 59;6B+;Tom;12/03/2024;
 31;Also Kinda Crimpy;17, 82;67, 64;6B+;Tom;12/03/2024;
-32;Yellow Crimps;17, 82;40, 64;6C;Tom;12/03/2024;
+32;Yellow Crimps;17, 82;40, 64;6C+;Tom;12/03/2024;
 33;Pull + cross;10, 82, 83;61, 65;6A+;Tom;12/03/2024;No Matching
 34;Gaston big;13, 81;39, 51;5+;Tom;12/03/2024;
 35;Gaston small;15, 12, 78;29, 36, 50;6A+;Tom;12/03/2024;
@@ -67,3 +67,5 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 66;Lilac Eliminate;11, 79;58;6A+;Tom;05/09/2024;Green feet R,C 1,1 / 1,3 / 3,2 only
 67;Right Pinky;21, 12, 78;45, 56;6B;Tom;05/09/2024;
 68;Right Pinky Low;5, 3, 78;15, 21, 45, 56;6B+;Tom;05/09/2024;
+69;Claire Proj By Tom L;8, 12, 75;21, 48, 56, 60;TBC;Tom;18/09/2024;Regress: Moon under red instead of dark brown at top
+70;Claire Proj By Tom R;17, 20, 80;39, 52, 65;TBC;Tom;18/09/2024;
