@@ -1,6 +1,6 @@
 route_id;route_name;specials;holds;grade;setter;date_set;comments
 1;LH throw;15, 20, 80;53, 62;4;Claire;01/02/2024;
-2;Left layback;13, 75;21, 28, 61;4;Claire;01/02/2024;
+2;Left layback;13, 75;28, 61;4;Claire;01/02/2024;
 3;Green one;6, 16, 63;37, 47;4;Claire;31/01/2024;
 4;Mean green one;6, 16, 76;37, 47, 63;5+;Claire;31/01/2024;
 5;Left ladder A;12, 21, 75;29, 42, 60;4;Tom;08/02/2024;
@@ -49,7 +49,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 48;Squish Squish Bish;14, 77;62, 60;5+;Claire;10/04/2024;
 49;Dark Blue Dots;20, 15, 75;36, 29, 59;6A;Dan + Sam;16/04/2024;
 50;Once In A Brown Moon;11, 79;22, 58;6B;Tom;16/04/2024;Green feet, no matching
-51;King Of The Swingers;10, 80;54, 61, 62, 70;5;Claire;23/04/2024;
+51;King Of The Swingers;10, 80;42, 61, 62, 70;5;Claire;23/04/2024;
 52;Tick Tack Boom;11, 78;33, 15;6B;Tom;28/05/2024;Green Feet
 53;Pretzl;20, 3, 77;33, 29, 56;6B;Tom;28/05/2024;Orange Feet
 54;Basic Crimps;12, 4, 73;32, 45, 59;6B;Tom;12/06/2024;
