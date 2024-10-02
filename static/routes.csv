@@ -69,3 +69,6 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 68;Right Pinky Low;5, 3, 78;15, 21, 45, 56;6B+;Tom;05/09/2024;
 69;Claire Proj By Tom L;8, 12, 75;21, 48, 56, 60;TBC;Tom;18/09/2024;Regress: Moon under red instead of dark brown at top
 70;Claire Proj By Tom R;17, 20, 80;39, 52, 65;TBC;Tom;18/09/2024;
+71;Momentum Control Part 1;1, 4, 79;69, 44;6B+;Tom;02/10/2024;
+72;Momentum Control Part 2;4, 8, 79;56, 69;6B+;Tom;02/10/2024;
+73;Momentum Control Part 3;1, 4, 79;56, 69;TBC;Tom;02/10/2024;
