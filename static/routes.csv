@@ -11,7 +11,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 10;Right Pinch;15, 38, 79;48, 69;TBC;Tom;16/02/2024;
 11;Pink Dots;17, 74;67, 23, 22, 44;6B;Dan + Sam;25/01/2024;
 12;Undercut + roll;10;14, 28, 62, 69, 78;5+;Claire;16/02/2024;
-13;Route 13;11, 73;44, 59;6A;Tom;16/02/2024;
+13;Route 13;11, 73;44, 59;6A;Tom;16/02/2024;Funky feet on green
 14;Black Dots Mod;8, 12, 80;29, 50;TBC;Tom;16/02/2024;
 15;Black Dots;8, 12, 80;50;6B+;Dan + Sam;25/01/2024;Similar grade on green feet
 16;Kinda Crimpy Alt Start;4, 12, 78;32, 59;6A+;Tom;16/02/2024;
@@ -70,5 +70,8 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 69;Claire Proj By Tom L;8, 12, 75;21, 48, 56, 60;TBC;Tom;18/09/2024;Regress: Moon under red instead of dark brown at top
 70;Claire Proj By Tom R;17, 20, 80;39, 52, 65;TBC;Tom;18/09/2024;
 71;Momentum Control Part 1;1, 4, 79;69, 44;6B+;Tom;02/10/2024;
-72;Momentum Control Part 2;4, 8, 79;56, 69;6B+;Tom;02/10/2024;
+72;Momentum Control Part 2;4, 8, 79;56, 69;6C;Tom;02/10/2024;
 73;Momentum Control Part 3;1, 4, 79;56, 69;TBC;Tom;02/10/2024;
+74;Zigzag;5, 3, 73;50, 78, 59, 29;6A+;Tom;06/11/2024;
+75;Zigzag Direct;3, 5, 73;50;6B;Tom;06/11/2024;
+76;Flouro Yellow Dots;13, 79;;6A;Dan + Sam;06/11/2024;
