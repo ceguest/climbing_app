@@ -78,3 +78,8 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 77;Fast, Fast, Slow;5, 79, 3;15, 69;6B;Tom;12/11/2024;Orange feet
 78;Claire Proj By Tom 3;15, 17, 74;50, 58;5+;Tom;20/11/2024;
 79;It Was Meant To Be A Warmup;1, 4, 78;29, 59;6B+;Tom;26/11/2024;Red Feet
+80;Just Playing;3, 4, 82, 83;36, 20;6B;Tom;11/12/2024;
+81;All In The Start V1;4, 3, 82, 83;12, 50, 36, 20;6B+;Tom;11/12/2024;
+82;All In The Start V2;4, 3, 82, 83;12, 50, 36;6B+;Tom;11/12/2024;
+83;Pogo (Easy Finish);1, 81, 4;56, 65, 36, 12;6C;Tom;11/12/2024;Red feet
+84;Pogo (Hard Finish);4, 1, 82, 83;12, 56, 65, 36;Project;Tom;11/12/2024;Red feet, far R orange to match
