@@ -21,7 +21,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 20;Undercuts + crimps;10, 73;24, 22, 59;6A+;Claire;21/02/2024;
 21;Bump, roll, stretch;5, 17, 77;39, 51;6A+;Tom;21/02/2024;
 22;The one with the white hold;10, 75;23, 28, 61;4;Claire;21/02/2024;Variation: swap L jug for pinch
-23;Grey Dots;15, 20, 74;70, 28, 62;6A+;Dan + Sam;28/02/2024;
+23;Grey Dots;15, 20, 74;70, 28, 62;6A+;Dan + Sam;28/02/2024;Good with orange + blue feet
 24;Don't Cut Feet;17, 72;15, 33, 45, 59;6C;Tom;28/02/2024;
 25;L pinch and cross;79, 13;44, 61;5;Claire;05/03/2024;(Except you don't actually cross!)
 26;Dark wood L;1, 4, 73;8, 12, 29, 56, 21, 59;6A+;Tom;06/03/2024;Sequential Hands, 6B+ on green feet
@@ -87,3 +87,5 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments
 86;Straight Up;3, 5, 78;33;6A+;Tom;11/01/2025;Green Feet
 87;Could It Finish On The Last L Hand?;3, 5, 78;33, 56;6A+;Tom;11/01/2025;Green feet
 88;Rolly Holdy;17, 73;23, 58;6B+;Tom;15/01/2025;Red feet, orange R foot to match
+89;Rich Woz Ere 2;11, 79;44, 51;6A+;Rich;19/01/2025;Green feet
+90;Twister;5, 3, 80;23, 21, 56, 50;6B+;Claire;19/01/2025;
