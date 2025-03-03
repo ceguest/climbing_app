@@ -24,6 +24,8 @@ class RouteAdder:
             cv2.circle(img, (hold_id.x_coord, hold_id.y_coord),
                        20, (0, 0, 255), -1)
 
+        cv2.rectangle(img, (1300, 2400), (2700, 3000), (0, 0, 0), -1)
+
         return img
 
     def create_route(self):
@@ -32,12 +34,16 @@ class RouteAdder:
         close_window_message = "Press any key to close this window once all holds are selected."
         add_hold_message = "L-click to add a hold,"
         special_hold_message = "Shift + L-click to add a start/finish,"
-        remove_hold_message = "R-click to remove any hold."
+        remove_hold_message = "Shift + L-click to remove any hand hold,"
+        foot_hold_message = "R-click to add a foot hold,"
+        remove_foot_hold_message = "Shift + R-click to remove a foot hold"
 
         cv2.putText(self.base_img, close_window_message, (100, 100), font, 2, (255, 255, 255), 5)
-        cv2.putText(self.base_img, add_hold_message, (1400, 2700), font, 1.5, (255, 255, 255), 5)
-        cv2.putText(self.base_img, special_hold_message, (1400, 2800), font, 1.5, (255, 255, 255), 5)
-        cv2.putText(self.base_img, remove_hold_message, (1400, 2900), font, 1.5, (255, 255, 255), 5)
+        cv2.putText(self.base_img, add_hold_message, (1400, 2500), font, 1.5, (255, 255, 255), 5)
+        cv2.putText(self.base_img, special_hold_message, (1400, 2600), font, 1.5, (255, 255, 255), 5)
+        cv2.putText(self.base_img, remove_hold_message, (1400, 2700), font, 1.5, (255, 255, 255), 5)
+        cv2.putText(self.base_img, foot_hold_message, (1400, 2800), font, 1.5, (255, 255, 255), 5)
+        cv2.putText(self.base_img, remove_foot_hold_message, (1400, 2900), font, 1.5, (255, 255, 255), 5)
         cv2.imshow('image', self.base_img)
         cv2.setWindowProperty('image', cv2.WND_PROP_TOPMOST, 1)
         cv2.setMouseCallback('image', self.click_event)
