@@ -12,8 +12,9 @@ class RouteAdder:
     def __init__(self):
         self.hold_handler = HoldHandler()
         self.base_img = self.create_base_img()
-        self.route_holds = []
-        self.special_holds = []
+        self.route_holds = {}
+        self.special_holds = {}
+        self.foot_holds = []
 
     def create_base_img(self):
         img = cv2.imread('static/Board_Layout.png', 1)
@@ -44,78 +45,87 @@ class RouteAdder:
         cv2.destroyAllWindows()
 
     def click_event(self, event, x, y, flags, params):
-        img = self.base_img
+        img = self.base_img.copy()
         routeHolds = self.route_holds
         specialHolds = self.special_holds
 
-        if event == cv2.EVENT_LBUTTONDOWN and flags == 1:
+        if event == cv2.EVENT_LBUTTONDOWN and flags == 1:  # Left click only; add hold
+            self.add_hold(routeHolds, specialHolds, x, y)
 
-            new_hold = self.hold_handler.get_nearby_hold(x, y)
-            hold_id = new_hold['id'].values[0]
-            hold_x = new_hold['x'].values[0]
-            hold_y = new_hold['y'].values[0]
+        elif event == cv2.EVENT_LBUTTONDOWN and flags == 17:  # Left click + shift; remove hold
+            self.remove_hold(routeHolds, specialHolds, x, y)
 
-            if hold_id in specialHolds:
-                specialHolds.remove(hold_id)
+        elif event == cv2.EVENT_RBUTTONDOWN and flags == 2:  # Right click; add foothold
+            self.add_foothold(x, y)
 
-            if hold_id not in routeHolds:
-                routeHolds.append(hold_id)
+        elif event == cv2.EVENT_RBUTTONDOWN and cv2.EVENT_FLAG_SHIFTKEY:  # Right click + shift; remove foothold
+            self.remove_foothold(x, y)
 
-                cv2.circle(img, (hold_x, hold_y),
-                           20, (255, 0, 0), -1)
+        elif event == cv2.EVENT_LBUTTONDOWN and cv2.EVENT_FLAG_CTRLKEY:  # Left click + ctrl; remove hold
+            self.add_special_hold(routeHolds, specialHolds, x, y)
 
-                cv2.imshow('image', img)
+        for foot_hold in self.foot_holds:
+            cv2.circle(img, (foot_hold[0], foot_hold[1]), 20, (128, 0, 128), 5)
 
-        elif event == cv2.EVENT_LBUTTONDOWN and flags == 17:
+        for hold_key, hold_coords in self.route_holds.items():
+            cv2.circle(img, (hold_coords[0], hold_coords[1]), 20, (255, 0, 0), -1)
 
-            new_hold = self.hold_handler.get_nearby_hold(x, y)
-            hold_id = new_hold['id'].values[0]
-            hold_x = new_hold['x'].values[0]
-            hold_y = new_hold['y'].values[0]
+        for special_hold_key, special_hold_coords in self.special_holds.items():
+            cv2.circle(img, (special_hold_coords[0], special_hold_coords[1]), 20, (0, 255, 0), -1)
 
-            if hold_id in routeHolds:
-                routeHolds.remove(hold_id)
+        cv2.imshow('image', img)
 
-            if hold_id not in specialHolds:
-                specialHolds.append(hold_id)
+    def add_hold(self, routeHolds, specialHolds, x, y):
+        new_hold = self.hold_handler.get_nearby_hold(x, y)
+        hold_id = new_hold['id'].values[0]
+        hold_x = new_hold['x'].values[0]
+        hold_y = new_hold['y'].values[0]
+        if hold_id in specialHolds.keys():
+            specialHolds.pop(hold_id)
+        if hold_id not in routeHolds.keys():
+            routeHolds[hold_id] = (hold_x, hold_y)
 
-                cv2.circle(img, (hold_x, hold_y),
-                           20, (0, 255, 0), -1)
+    def add_foothold(self, x, y):
+        foot_coords = (x, y)
+        self.foot_holds.append(foot_coords)
 
-                cv2.imshow('image', img)
+    def add_special_hold(self, routeHolds, specialHolds, x, y):
+        new_hold = self.hold_handler.get_nearby_hold(x, y)
+        hold_id = new_hold['id'].values[0]
+        hold_x = new_hold['x'].values[0]
+        hold_y = new_hold['y'].values[0]
+        if hold_id in routeHolds.keys():
+            routeHolds.pop(hold_id)
+        if hold_id not in specialHolds.keys():
+            specialHolds[hold_id] = (hold_x, hold_y)
 
-        elif event == cv2.EVENT_RBUTTONDOWN:
+    def remove_hold(self, routeHolds, specialHolds, x, y):
+        new_hold = self.hold_handler.get_nearby_hold(x, y)
+        hold_id = new_hold['id'].values[0]
+        if hold_id in routeHolds.keys():
+            routeHolds.pop(hold_id)
 
-            new_hold = self.hold_handler.get_nearby_hold(x, y)
-            hold_id = new_hold['id'].values[0]
-            hold_x = new_hold['x'].values[0]
-            hold_y = new_hold['y'].values[0]
+        elif hold_id in specialHolds.keys():
+            specialHolds.pop(hold_id)
 
-            if hold_id in routeHolds:
-                routeHolds.remove(hold_id)
-
-                cv2.circle(img, (hold_x, hold_y),
-                           20, (0, 0, 255), -1)
-
-                cv2.imshow('image', img)
-
-            elif hold_id in specialHolds:
-                specialHolds.remove(hold_id)
-
-                cv2.circle(img, (hold_x, hold_y),
-                           20, (0, 0, 255), -1)
-
-                cv2.imshow('image', img)
+    def remove_foothold(self, x, y):
+        radius = 60
+        for i in range(len(self.foot_holds)):
+            x_delta = abs(self.foot_holds[i][0] - x)
+            y_delta = abs(self.foot_holds[i][1] - y)
+            print(f"x_delta: {x_delta}, y_delta: {y_delta}")
+            if x_delta < radius and y_delta < radius:
+                self.foot_holds.pop(i)
 
     def check_route_exists(self):
         all_routes_df = pd.read_csv('static/routes.csv', sep=";")
-        
-        new_route_all_holds = list(set(self.route_holds + self.special_holds))
+
+        new_route_all_holds = list(set(list(self.route_holds.keys()) + list(self.special_holds.keys())))
         new_route_all_holds.sort()
-        
+
         for i in range(len(all_routes_df)):
             route_data = all_routes_df.iloc[i]
-            test = all_routes_df.loc[all_routes_df['route_id']==int(i+1)]
+            test = all_routes_df.loc[all_routes_df['route_id'] == int(i + 1)]
             try:
                 route_specials = route_data['specials'].split(',')
                 route_specials = [int(x) for x in route_specials]
@@ -133,7 +143,7 @@ class RouteAdder:
                 route_name = route_data['route_name']
                 return True, route_nr, route_name
         return False, None, None
-            
+
     def append_route(self):
         df2 = pd.read_csv('static/routes.csv', sep=';')
         lastRouteID = df2['route_id'].iat[-1]
@@ -149,8 +159,8 @@ class RouteAdder:
             routeName = routeName.title()
 
         comments = sd.askstring(title="Comments",
-                               prompt="Enter any comments",
-                               initialvalue="")
+                                prompt="Enter any comments",
+                                initialvalue="")
         if comments is None:
             comments = ""
 
@@ -182,7 +192,8 @@ class RouteAdder:
                 'grade': grade,
                 'setter': setter,
                 'date_set': dateSet,
-                'comments': comments
+                'comments': comments,
+                'feet': str(self.foot_holds)
                 }
 
         df3 = pd.DataFrame(data, index=[0])

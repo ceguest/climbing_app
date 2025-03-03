@@ -20,5 +20,7 @@ class RouteVisualiser:
         for hold_id in route.specials:
             hold = route.specials[hold_id]
             cv2.circle(img, (hold.x_coord, hold.y_coord), 20, (0, 0, 255), -1)
+        for foot in route.feet:
+            cv2.circle(img, (foot[0], foot[1]), 20, (128, 0, 128), 5)
         return img
 
