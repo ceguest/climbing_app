@@ -1,6 +1,7 @@
 import pandas as pd
 from route import Route
 from hold_handler import HoldHandler
+from foot_handler import FootHandler
 
 
 class RouteHandler:
@@ -13,6 +14,7 @@ class RouteHandler:
 
     def load_route(self, route_id):
         hold_handler = HoldHandler()
+        foot_handler = FootHandler()
         df = self.routes_df
         route_data = df.loc[df['route_id'] == int(route_id)]
 
@@ -28,13 +30,20 @@ class RouteHandler:
         except:
             specials = {}
 
+        try:
+            feet_locs = route_data["feet"].values[0]
+            feet = foot_handler.parse_feet(feet_locs)
+        except:
+            feet = []
+
         route = Route(
             id=route_data["route_id"].values[0],
             name=route_data["route_name"].values[0],
             specials=specials,
             holds=holds,
             grade=route_data["grade"].values[0],
-            comments=route_data["comments"].values[0]
+            comments=route_data["comments"].values[0],
+            feet=feet
         )
         return route
 
