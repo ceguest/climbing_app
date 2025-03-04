@@ -43,7 +43,9 @@ class RouteHandler:
             holds=holds,
             grade=route_data["grade"].values[0],
             comments=route_data["comments"].values[0],
-            feet=feet
+            feet=feet,
+            date_set=route_data["date_set"].values[0],
+            setter=route_data["setter"].values[0]
         )
         return route
 

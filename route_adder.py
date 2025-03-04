@@ -15,6 +15,13 @@ class RouteAdder:
         self.route_holds = {}
         self.special_holds = {}
         self.foot_holds = []
+        self.existing_route = None
+
+    def load_existing_route(self, route):
+        self.existing_route = route
+        self.route_holds = route.holds_dict()
+        self.special_holds = route.special_holds_dict()
+        self.foot_holds = route.feet
 
     def create_base_img(self):
         img = cv2.imread('static/Board_Layout.png', 1)
@@ -33,7 +40,7 @@ class RouteAdder:
 
         close_window_message = "Press any key to close this window once all holds are selected."
         add_hold_message = "L-click to add a hold,"
-        special_hold_message = "Shift + L-click to add a start/finish,"
+        special_hold_message = "Ctrl + L-click to add a start/finish,"
         remove_hold_message = "Shift + L-click to remove any hand hold,"
         foot_hold_message = "R-click to add a foot hold,"
         remove_foot_hold_message = "Shift + R-click to remove a foot hold"
@@ -44,7 +51,11 @@ class RouteAdder:
         cv2.putText(self.base_img, remove_hold_message, (1400, 2700), font, 1.5, (255, 255, 255), 5)
         cv2.putText(self.base_img, foot_hold_message, (1400, 2800), font, 1.5, (255, 255, 255), 5)
         cv2.putText(self.base_img, remove_foot_hold_message, (1400, 2900), font, 1.5, (255, 255, 255), 5)
-        cv2.imshow('image', self.base_img)
+
+        img = self.base_img.copy()
+        self.render_route(img)
+
+        cv2.imshow('image', img)
         cv2.setWindowProperty('image', cv2.WND_PROP_TOPMOST, 1)
         cv2.setMouseCallback('image', self.click_event)
         cv2.waitKey(0)
@@ -70,16 +81,17 @@ class RouteAdder:
         elif event == cv2.EVENT_LBUTTONDOWN and cv2.EVENT_FLAG_CTRLKEY:  # Left click + ctrl; remove hold
             self.add_special_hold(routeHolds, specialHolds, x, y)
 
-        for foot_hold in self.foot_holds:
-            cv2.circle(img, (foot_hold[0], foot_hold[1]), 20, (128, 0, 128), 5)
-
-        for hold_key, hold_coords in self.route_holds.items():
-            cv2.circle(img, (hold_coords[0], hold_coords[1]), 20, (255, 0, 0), -1)
-
-        for special_hold_key, special_hold_coords in self.special_holds.items():
-            cv2.circle(img, (special_hold_coords[0], special_hold_coords[1]), 20, (0, 255, 0), -1)
+        self.render_route(img)
 
         cv2.imshow('image', img)
+
+    def render_route(self, img):
+        for foot_hold in self.foot_holds:
+            cv2.circle(img, (foot_hold[0], foot_hold[1]), 20, (128, 0, 128), 5)
+        for hold_key, hold_coords in self.route_holds.items():
+            cv2.circle(img, (hold_coords[0], hold_coords[1]), 20, (255, 0, 0), -1)
+        for special_hold_key, special_hold_coords in self.special_holds.items():
+            cv2.circle(img, (special_hold_coords[0], special_hold_coords[1]), 20, (0, 255, 0), -1)
 
     def add_hold(self, routeHolds, specialHolds, x, y):
         new_hold = self.hold_handler.get_nearby_hold(x, y)
@@ -206,9 +218,71 @@ class RouteAdder:
 
         df3.to_csv('static/routes.csv', sep=';', mode='a', index=False, header=False)
 
+    def update_route(self):
+        df2 = pd.read_csv('static/routes.csv', sep=';')
+
+        routeID = self.existing_route.id
+
+        newRouteName = sd.askstring(title="Route Name",
+                                 prompt="Enter a name for the route:",
+                                 initialvalue=self.existing_route.name)
+        if newRouteName is None:
+            routeName = self.existing_route.name
+        else:
+            routeName = newRouteName.title()
+
+        comments = sd.askstring(title="Comments",
+                                prompt="Enter any comments",
+                                initialvalue=self.existing_route.comments)
+        if comments is None:
+            comments = self.existing_route.comments
+
+
+        specials = self.string_holds(self.special_holds)
+        holds = self.string_holds(self.route_holds)
+
+        grade = sd.askstring(title="Grade",
+                             prompt="Enter a grade for the route:",
+                             initialvalue=self.existing_route.grade)
+        if grade is None:
+            grade = self.existing_route.grade
+        else:
+            grade = grade.upper()
+
+        setter = sd.askstring(title="Setter",
+                              prompt="Enter the route setter",
+                              initialvalue=self.existing_route.setter)
+        if setter is None:
+            setter = self.existing_route.setter
+        else:
+            setter = setter.title()
+
+
+        data = {'route_id': routeID,
+                'route_name': routeName,
+                'specials': specials,
+                'holds': holds,
+                'grade': grade,
+                'setter': setter,
+                'date_set': self.existing_route.date_set,
+                'comments': comments,
+                'feet': str(self.foot_holds)
+                }
+
+        # df3 = pd.DataFrame(data, index=[0])
+        df2.iloc[routeID - 1] = data
+
+        # merge df3 into df2 with overwrite
+        # overwrite csv file with new df2
+
+        df2.to_csv('static/routes.csv', sep=';', mode='w+', index=False, header=True)
+
+
     def string_holds(self, holdList):
-        holds1 = []
-        for i in holdList:
-            holds1.append(str(i))
-        holds2 = ', '.join(holds1)
-        return holds2
+            holds1 = []
+            for i in holdList:
+                holds1.append(str(i))
+            holds2 = ', '.join(holds1)
+            return holds2
+
+
