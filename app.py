@@ -6,6 +6,8 @@ from route_visualiser import RouteVisualiser
 from PIL import Image as IM
 from PIL import ImageTk
 import cv2
+import image_utils
+from app_components.route_canvas import RouteCanvas
 
 NUMBERED_IMAGE = "static/Hold_Numbers_Markup.png"
 BASE_IMAGE = "static/Board_Layout.png"
@@ -19,15 +21,18 @@ class TkApp:
 
         self.route_handler = route_handler
         self.route_visualiser = route_visualiser
+
+
         self.root = Tk()
         self.root.title('Homewall')
 
         self.get_window_dims()
         self.setup_window_grid()
 
-        self.create_route_canvas(row=0, column=0, rowspan=3, columnspan=1)
-        self.base_image = self.get_base_image()
-        self.display_image_on_route_canvas(self.base_image)
+        self.base_image = image_utils.open_image_and_size(BASE_IMAGE, self.img_width, self.img_height)
+
+        self.canvas = RouteCanvas(self.img_width, self.img_height, 0, 0, 3, 1, self.root)
+        self.canvas.display_image_on_route_canvas(self.base_image)
 
         self.create_routes_listbox(row=0, column=1, rowspan=1, columnspan=1)
 
@@ -39,126 +44,6 @@ class TkApp:
         self.root.resizable(0, 0)
 
         self.currently_selected_route = None
-
-    def get_window_dims(self):
-        self.root.state('zoomed')
-        self.width = self.root.winfo_width()
-        self.height = self.root.winfo_height()
-
-    def setup_window_grid(self):
-        self.img_height = self.height
-        self.img_width = self.img_height / 0.75  # Maintains 4:3 ratio
-        self.list_width = self.width - self.img_width
-
-        self.routes_height = 0.6 * self.height
-        self.grades_height = 0.2 * self.height
-        self.buttons_height = 0.1 * self.height
-
-        self.root.rowconfigure(0, minsize=self.routes_height)
-        self.root.rowconfigure(1, minsize=self.grades_height)
-
-        self.root.columnconfigure(0, minsize=self.img_width)
-        self.root.columnconfigure(1, minsize=self.list_width)
-
-    def get_base_image(self):
-        img = IM.open(BASE_IMAGE)
-        img_res = img.resize((int(self.img_width), int(self.img_height)))
-        return img_res
-
-    def convert_cv2_to_pil(self, img):
-        # Rearrange the color channel
-        b, g, r = cv2.split(img)
-        img = cv2.merge((r, g, b))
-
-        # Convert the cv2 Image object into a tk Image object
-        im = IM.fromarray(img)
-        return im
-
-    def run_route_menu(self):
-        self.route_menu = Tk()
-        self.route_menu.title('Menu')
-        self.route_menu.geometry('200x200')
-
-        add_route_button = Button(self.route_menu, text="Add route",
-                                  command=self.add_route)
-        add_route_button.pack(pady=20)
-
-        edit_route_button = Button(self.route_menu, text="Edit route",
-                                  command=self.edit_route)
-        edit_route_button.pack(pady=20)
-
-    def edit_route(self):
-        self.route_menu.destroy()
-        route_adder = RouteAdder()
-        route_adder.load_existing_route(self.currently_selected_route)
-        route_adder.create_route()
-
-        check_route_exists, route_nr, route_name = route_adder.check_route_exists()
-        if check_route_exists == True and self.currently_selected_route.id != route_nr:
-            info_message = ('The holds you have selected already form route number ' +
-                            str(route_nr) + " - " + route_name +
-                            ' so this route edit cannot be saved.')
-            info = messagebox.showwarning(title=None,
-                                          message=info_message)
-
-        else:
-            check_add_route = messagebox.askquestion(title=None,
-                                                     message='Do you want to save your new route?',
-                                                     icon='question',
-                                                     type='yesno',
-                                                     default='yes')
-            if check_add_route == 'yes':
-                route_adder.update_route()
-        self.root.deiconify()
-        self.route_handler.read_routes()
-        self.update_routes_listbox()
-
-        self.grades_listbox.delete(0, END)
-        self.grades = route_handler.get_grades()
-        sorted_grades = self.sort_grade_list()
-        x = 1
-        for grade in sorted_grades:
-            self.grades_listbox.insert(x, grade)
-            x += 1
-
-
-    def add_route(self):
-        self.route_menu.destroy()
-        self.root.withdraw()
-        route_adder = RouteAdder()
-        route_adder.create_route()
-        check_route_exists, route_nr, route_name = route_adder.check_route_exists()
-        if check_route_exists == True:
-            info_message = ('The holds you have selected already form route number ' +
-                            str(route_nr) + " - " + route_name +
-                            ' so your new route cannot be created.')
-            info = messagebox.showwarning(title=None,
-                                          message=info_message)
-        else:
-            check_add_route = messagebox.askquestion(title=None,
-                                                     message='Do you want to save your new route?',
-                                                     icon='question',
-                                                     type='yesno',
-                                                     default='yes')
-            if check_add_route == 'yes':
-                route_adder.append_route()
-        self.root.deiconify()
-        self.route_handler.read_routes()
-        self.update_routes_listbox()
-
-        self.grades_listbox.delete(0, END)
-        self.grades = route_handler.get_grades()
-        sorted_grades = self.sort_grade_list()
-        x = 1
-        for grade in sorted_grades:
-            self.grades_listbox.insert(x, grade)
-            x += 1
-
-    def create_route_canvas(self, row, column, rowspan, columnspan):
-        self.canvas = Canvas(self.root, width=self.img_width,
-                             height=self.img_height)
-        self.canvas.grid(row=row, column=column, rowspan=rowspan,
-                         columnspan=columnspan)
 
     def create_routes_listbox(self, row, column, rowspan, columnspan):
 
@@ -195,6 +80,107 @@ class TkApp:
         self.routes_scrollbar.grid(row=1, column=1, rowspan=1, columnspan=1,
                                    sticky=(N, E, S, W), padx=(0, 10))
         self.routes_listbox.config(yscrollcommand=self.routes_scrollbar.set)
+
+
+    def get_window_dims(self):
+        self.root.state('zoomed')
+        self.width = self.root.winfo_width()
+        self.height = self.root.winfo_height()
+
+    def setup_window_grid(self):
+        self.img_height = self.height
+        self.img_width = self.img_height / 0.75  # Maintains 4:3 ratio
+        self.list_width = self.width - self.img_width
+
+        self.routes_height = 0.6 * self.height
+        self.grades_height = 0.2 * self.height
+        self.buttons_height = 0.1 * self.height
+
+        self.root.rowconfigure(0, minsize=self.routes_height)
+        self.root.rowconfigure(1, minsize=self.grades_height)
+
+        self.root.columnconfigure(0, minsize=self.img_width)
+        self.root.columnconfigure(1, minsize=self.list_width)
+
+    def run_route_menu(self):
+        self.route_menu = Tk()
+        self.route_menu.title('Menu')
+        self.route_menu.geometry('200x200')
+
+        add_route_button = Button(self.route_menu, text="Add route",
+                                  command=self.add_route)
+        add_route_button.pack(pady=20)
+
+        edit_route_button = Button(self.route_menu, text="Edit route",
+                                   command=self.edit_route)
+        edit_route_button.pack(pady=20)
+
+    def edit_route(self):
+        self.route_menu.destroy()
+        route_adder = RouteAdder()
+        route_adder.load_existing_route(self.currently_selected_route)
+        route_adder.create_route()
+
+        check_route_exists, route_nr, route_name = route_adder.check_route_exists()
+        if check_route_exists == True and self.currently_selected_route.id != route_nr:
+            info_message = ('The holds you have selected already form route number ' +
+                            str(route_nr) + " - " + route_name +
+                            ' so this route edit cannot be saved.')
+            info = messagebox.showwarning(title=None,
+                                          message=info_message)
+
+        else:
+            check_add_route = messagebox.askquestion(title=None,
+                                                     message='Do you want to save your new route?',
+                                                     icon='question',
+                                                     type='yesno',
+                                                     default='yes')
+            if check_add_route == 'yes':
+                route_adder.update_route()
+        self.root.deiconify()
+        self.route_handler.read_routes()
+        self.update_routes_listbox()
+
+        self.grades_listbox.delete(0, END)
+        self.grades = route_handler.get_grades()
+        sorted_grades = self.sort_grade_list()
+        x = 1
+        for grade in sorted_grades:
+            self.grades_listbox.insert(x, grade)
+            x += 1
+
+    def add_route(self):
+        self.route_menu.destroy()
+        self.root.withdraw()
+        route_adder = RouteAdder()
+        route_adder.create_route()
+        check_route_exists, route_nr, route_name = route_adder.check_route_exists()
+        if check_route_exists == True:
+            info_message = ('The holds you have selected already form route number ' +
+                            str(route_nr) + " - " + route_name +
+                            ' so your new route cannot be created.')
+            info = messagebox.showwarning(title=None,
+                                          message=info_message)
+        else:
+            check_add_route = messagebox.askquestion(title=None,
+                                                     message='Do you want to save your new route?',
+                                                     icon='question',
+                                                     type='yesno',
+                                                     default='yes')
+            if check_add_route == 'yes':
+                route_adder.append_route()
+        self.root.deiconify()
+        self.route_handler.read_routes()
+        self.update_routes_listbox()
+
+        self.grades_listbox.delete(0, END)
+        self.grades = route_handler.get_grades()
+        sorted_grades = self.sort_grade_list()
+        x = 1
+        for grade in sorted_grades:
+            self.grades_listbox.insert(x, grade)
+            x += 1
+
 
     def create_grade_filter(self, row, column, rowspan, columnspan):
 
@@ -279,43 +265,34 @@ class TkApp:
         route = self.route_handler.load_route(route_id)
         img = route_visualiser.show_route(route)
 
-        img = self.convert_cv2_to_pil(img)
+        img = image_utils.convert_cv2_to_pil(img)
 
         resized_image = img.resize((int(self.img_width), int(self.img_height)))
 
-        self.display_image_on_route_canvas(resized_image)
+        self.canvas.display_image_on_route_canvas(resized_image)
         self.currently_selected_route = route
 
-    def display_image_on_route_canvas(self, route_image):
-        self.canvas.image = ImageTk.PhotoImage(route_image)
-        self.canvas.create_image(0, 0, image=self.canvas.image, anchor='nw')
-
-    def quit(self):
-        self.root.destroy()
-        if self.route_menu:
-            self.route_menu.destroy()
 
     def create_buttons(self, row, column, rowspan, columnspan):
         button_frame = Frame(self.root, width=self.list_width,
                              height=self.buttons_height)
         button_frame.grid_propagate(0)
 
-        # add_route_button = Button(button_frame, text="Add route",
-        #                           command=self.add_route)
-        # add_route_button.pack(side=LEFT, padx=self.list_width / 20)
         add_route_button = Button(button_frame, text="Route Menu",
                                   command=self.run_route_menu)
         add_route_button.pack(side=LEFT, padx=self.list_width / 20)
 
-        ##        add_route_button.grid(row=2, column=1, rowspan=1, columnspan=1)
-
         quit_button = Button(button_frame, text='Quit',
                              command=self.root.destroy)
         quit_button.pack(side=RIGHT, padx=self.list_width / 20)
-        ##        quit_button.grid(row=2, column=1, rowspan=1, columnspan=1)
 
         button_frame.grid(row=row, column=column, rowspan=rowspan,
                           columnspan=columnspan, sticky='NESW')
+
+    def quit(self):
+        self.root.destroy()
+        if self.route_menu:
+            self.route_menu.destroy()
 
 
 if __name__ == "__main__":

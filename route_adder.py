@@ -224,8 +224,8 @@ class RouteAdder:
         routeID = self.existing_route.id
 
         newRouteName = sd.askstring(title="Route Name",
-                                 prompt="Enter a name for the route:",
-                                 initialvalue=self.existing_route.name)
+                                    prompt="Enter a name for the route:",
+                                    initialvalue=self.existing_route.name)
         if newRouteName is None:
             routeName = self.existing_route.name
         else:
@@ -236,7 +236,6 @@ class RouteAdder:
                                 initialvalue=self.existing_route.comments)
         if comments is None:
             comments = self.existing_route.comments
-
 
         specials = self.string_holds(self.special_holds)
         holds = self.string_holds(self.route_holds)
@@ -257,32 +256,25 @@ class RouteAdder:
         else:
             setter = setter.title()
 
+        data = {
+            'route_id': routeID,
+            'route_name': routeName,
+            'specials': specials,
+            'holds': holds,
+            'grade': grade,
+            'setter': setter,
+            'date_set': self.existing_route.date_set,
+            'comments': comments,
+            'feet': str(self.foot_holds)
+        }
 
-        data = {'route_id': routeID,
-                'route_name': routeName,
-                'specials': specials,
-                'holds': holds,
-                'grade': grade,
-                'setter': setter,
-                'date_set': self.existing_route.date_set,
-                'comments': comments,
-                'feet': str(self.foot_holds)
-                }
-
-        # df3 = pd.DataFrame(data, index=[0])
         df2.iloc[routeID - 1] = data
-
-        # merge df3 into df2 with overwrite
-        # overwrite csv file with new df2
 
         df2.to_csv('static/routes.csv', sep=';', mode='w+', index=False, header=True)
 
-
     def string_holds(self, holdList):
-            holds1 = []
-            for i in holdList:
-                holds1.append(str(i))
-            holds2 = ', '.join(holds1)
-            return holds2
-
-
+        holds1 = []
+        for i in holdList:
+            holds1.append(str(i))
+        holds2 = ', '.join(holds1)
+        return holds2

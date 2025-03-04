@@ -1,5 +1,4 @@
 Features
-* edit route
 * add a way to filter by projects for a person
   * with a project column containing a list of names?
   * would have to have a way of editing routes to add/remove project
@@ -32,4 +31,5 @@ Done
 * BUG - check_route_exists doesn't work if any route has a blank field (holds or specials)
 * check for duplicate routes
 * footholds
+* edit route
 
