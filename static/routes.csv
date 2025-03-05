@@ -35,7 +35,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments;feet
 34;Gaston big;13, 81;39, 51;5+;Tom;12/03/2024;;
 35;Gaston small;15, 12, 78;29, 36, 50;6A+;Tom;12/03/2024;;
 36;Light blue dots mod;18, 41, 75;36, 34, 60;6A+;Tom;12/03/2024;No Matching;
-37;Shoulder Stability;1, 12, 78;21, 36, 59;6B;Tom;12/03/2024;;
+37;Shoulder Stability;1, 12, 78;21, 36, 59;6B;Tom;12/03/2024;;[]
 38;Kinda Crimpy Regression;11, 78;32, 58;6B;Tom;20/03/2024;;
 39;Claire Gaston Right;14, 78;34, 60;6A;Tom;20/03/2024;;
 40;Claire Gaston Left;14, 77;30, 62;6A;Tom;20/03/2024;;

@@ -6,21 +6,29 @@ from tkinter import (
     Scrollbar,
     N, E, S, W
 )
+import image_utils
+from tkinter import END
+
 
 class RoutesListbox:
     def __init__(
             self,
-            width,
-            height,
-            row,
-            column,
-            rowspan,
-            columnspan,
             route_handler,
-            parent
+            route_visualiser,
+            canvas,
+            parent_window
     ):
-        self.route_entry_frame = Frame(parent, width=width,
-                                       height=height)
+        self.parent_window = parent_window
+        route_listbox_position = parent_window.routes_listbox_position()
+
+        self.img_height = parent_window.img_height
+        self.img_width = parent_window.img_width
+        self.canvas = canvas
+        self.route_visualiser = route_visualiser
+        self.route_handler = route_handler
+
+        self.route_entry_frame = Frame(parent_window.root, width=parent_window.list_width,
+                                       height=parent_window.routes_height)
         self.route_entry_frame.grid_propagate(0)
         self.route_entry_frame.rowconfigure(1, weight=1)
         self.route_entry_frame.columnconfigure(0, weight=1)
@@ -43,8 +51,13 @@ class RoutesListbox:
         self.routes_listbox.bind("<Down>", self.OnEntryUpDown_routes_listbox)
         self.routes_listbox.bind("<Up>", self.OnEntryUpDown_routes_listbox)
 
-        self.route_entry_frame.grid(row=row, column=column, rowspan=rowspan,
-                                    columnspan=columnspan, sticky='NESW')
+        self.route_entry_frame.grid(
+            row=route_listbox_position.row,
+            column=route_listbox_position.column,
+            rowspan=route_listbox_position.rowspan,
+            columnspan=route_listbox_position.columnspan,
+            sticky='NESW'
+        )
 
         self.routes_scrollbar = Scrollbar(self.route_entry_frame,
                                           orient='vertical')
@@ -52,3 +65,32 @@ class RoutesListbox:
         self.routes_scrollbar.grid(row=1, column=1, rowspan=1, columnspan=1,
                                    sticky=(N, E, S, W), padx=(0, 10))
         self.routes_listbox.config(yscrollcommand=self.routes_scrollbar.set)
+
+    def OnEntryUpDown_routes_listbox(self, event):
+        selection = event.widget.curselection()[0]
+
+        if event.keysym == 'Up':
+            selection += -1
+
+        if event.keysym == 'Down':
+            selection += 1
+
+        if 0 <= selection < event.widget.size():
+            event.widget.selection_clear(0, END)
+            event.widget.select_set(selection)
+        self.update_route()
+
+    def update_route(self, event=None):
+        route_index = self.routes_listbox.curselection()
+
+        route_string = self.routes_listbox.get(route_index)
+        route_id = int(route_string.split(":")[0])
+        route = self.route_handler.load_route(route_id)
+        img = self.route_visualiser.show_route(route)
+
+        img = image_utils.convert_cv2_to_pil(img)
+
+        resized_image = img.resize((int(self.img_width), int(self.img_height)))
+
+        self.canvas.display_image_on_route_canvas(resized_image)
+        self.route_handler.currently_selected_route = route

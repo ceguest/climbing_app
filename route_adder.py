@@ -9,7 +9,8 @@ from tkinter import simpledialog as sd
 
 
 class RouteAdder:
-    def __init__(self):
+    def __init__(self, route_handler):
+        self.route_handler = route_handler
         self.hold_handler = HoldHandler()
         self.base_img = self.create_base_img()
         self.route_holds = {}
@@ -17,11 +18,11 @@ class RouteAdder:
         self.foot_holds = []
         self.existing_route = None
 
-    def load_existing_route(self, route):
-        self.existing_route = route
-        self.route_holds = route.holds_dict()
-        self.special_holds = route.special_holds_dict()
-        self.foot_holds = route.feet
+    def load_existing_route(self):
+        self.existing_route = self.route_handler.get_current_route()
+        self.route_holds = self.existing_route.holds_dict()
+        self.special_holds = self.existing_route.special_holds_dict()
+        self.foot_holds = self.existing_route.feet
 
     def create_base_img(self):
         img = cv2.imread('static/Board_Layout.png', 1)

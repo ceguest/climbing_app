@@ -1,0 +1,30 @@
+git config --local credential.helper cache
+
+update token:
+https://stackoverflow.com/questions/20195304/how-do-i-update-the-password-for-gitt
+
+
+echo 'export PATH="/opt/homebrew/opt/tcl-tk:$PATH"' >> ~/.zshrc
+python -m tkinter -c "tkinter._test()"
+https://stackoverflow.com/a/79453349
+
+This has been working for me to get Python to work with tkinter. I have used it with Python 3.11 and 3.13 via pyenv.
+
+$ PyOpenGL % env \
+  PATH="$(brew --prefix tcl-tk)/bin:$PATH" \
+  LDFLAGS="-L$(brew --prefix tcl-tk)/lib" \
+  CPPFLAGS="-I$(brew --prefix tcl-tk)/include" \
+  PKG_CONFIG_PATH="$(brew --prefix tcl-tk)/lib/pkgconfig" \
+  CFLAGS="-I$(brew --prefix tcl-tk)/include" \
+  PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I$(brew --prefix tcl-tk)/include' --with-tcltk-libs='-L$(brew --prefix tcl-tk)/lib -ltcl8.6 -ltk8.6'" \
+  pyenv install 3.13
+At this point I use the specific Python version via something like python3.13, or set the version with pyenv global 3.13 or pyenv local 3.13, and can finally import tkinter. I specifically was running through this to get the turtle module to work.
+
+I got this from more detailed instructions that I forked from someone else's GitHub gist here: https://gist.github.com/addison-grant/b3bf8417fdbb023498eb8a2b921874ac
+
+
+.git/config
+change url
+    url = https://github.com/aedavids/lab3RotationProject.git
+to
+    url = https://myGitHubUserId@github.com/aedavids/lab3RotationProject.git

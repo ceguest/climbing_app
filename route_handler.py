@@ -6,8 +6,16 @@ from foot_handler import FootHandler
 
 class RouteHandler:
     def __init__(self):
+        self.currently_selected_route = None
         self.routes_df = None
         self.read_routes()
+
+    def get_current_route(self):
+        return self.currently_selected_route
+
+    def set_current_route(self, route):
+        self.currently_selected_route = route
+
 
     def read_routes(self):
         self.routes_df = pd.read_csv('static/routes.csv', sep=";")
@@ -54,6 +62,24 @@ class RouteHandler:
 
     def get_grades(self):
         return set(self.routes_df["grade"].values)
+
+    def get_sorted_grades(self):
+        return self.sort_grade_list(self.get_grades())
+
+    def sort_grade_list(self, grades):
+        grade_order = ['3-', '3', '3+', '4-', '4', '4+', '5-', '5', '5+',
+                       '6A', '6A+', '6B', '6B+', '6C', '6C+',
+                       '7A', '7A+', '7B', '7B+', '7C', '7C+']
+        count = 0
+        while count < len(grade_order):
+            if grade_order[count] not in grades:
+                grade_order.remove(grade_order[count])
+            else:
+                count += 1
+        for grade in grades:
+            if grade not in grade_order:
+                grade_order.append(grade)
+        return grade_order
 
     def get_filtered_routes(self, grades):
         if grades == []:
