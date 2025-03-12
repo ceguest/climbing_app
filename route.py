@@ -1,6 +1,7 @@
 import numpy as np
 class Route:
     def __init__(self, name, specials, holds, comments, feet=None, id=None, grade=None, date_set=None, setter=None):
+    def __init__(self, name, specials, holds, comments, feet=None, id=None, grade=None):
         self.id = id
         self.name = name
         self.specials = specials
