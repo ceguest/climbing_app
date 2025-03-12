@@ -36,8 +36,9 @@ class TkApp:
         self.create_buttons(row=2, column=1, rowspan=1, columnspan=1)
 
         self.root.update_idletasks()
-        self.root.resizable(0,0)
+        self.root.resizable(0, 0)
 
+        self.currently_selected_route = None
 
     def get_window_dims(self):
         self.root.state('zoomed')
@@ -73,7 +74,56 @@ class TkApp:
         im = IM.fromarray(img)
         return im
 
+    def run_route_menu(self):
+        self.route_menu = Tk()
+        self.route_menu.title('Menu')
+        self.route_menu.geometry('200x200')
+
+        add_route_button = Button(self.route_menu, text="Add route",
+                                  command=self.add_route)
+        add_route_button.pack(pady=20)
+
+        edit_route_button = Button(self.route_menu, text="Edit route",
+                                  command=self.edit_route)
+        edit_route_button.pack(pady=20)
+
+    def edit_route(self):
+        self.route_menu.destroy()
+        route_adder = RouteAdder()
+        route_adder.load_existing_route(self.currently_selected_route)
+        route_adder.create_route()
+
+        check_route_exists, route_nr, route_name = route_adder.check_route_exists()
+        if check_route_exists == True and self.currently_selected_route.id != route_nr:
+            info_message = ('The holds you have selected already form route number ' +
+                            str(route_nr) + " - " + route_name +
+                            ' so this route edit cannot be saved.')
+            info = messagebox.showwarning(title=None,
+                                          message=info_message)
+
+        else:
+            check_add_route = messagebox.askquestion(title=None,
+                                                     message='Do you want to save your new route?',
+                                                     icon='question',
+                                                     type='yesno',
+                                                     default='yes')
+            if check_add_route == 'yes':
+                route_adder.update_route()
+        self.root.deiconify()
+        self.route_handler.read_routes()
+        self.update_routes_listbox()
+
+        self.grades_listbox.delete(0, END)
+        self.grades = route_handler.get_grades()
+        sorted_grades = self.sort_grade_list()
+        x = 1
+        for grade in sorted_grades:
+            self.grades_listbox.insert(x, grade)
+            x += 1
+
+
     def add_route(self):
+        self.route_menu.destroy()
         self.root.withdraw()
         route_adder = RouteAdder()
         route_adder.create_route()
@@ -123,8 +173,8 @@ class TkApp:
 
         self.routes_listbox = Listbox(self.route_entry_frame, selectmode=SINGLE,
                                       exportselection=False)
-        
-        x=1
+
+        x = 1
 
         for index in self.route_handler.routes_df.index:
             list_string = f"{self.route_handler.routes_df['route_id'][index]}: {self.route_handler.routes_df['route_name'][index]} ({self.route_handler.routes_df['grade'][index]})"
@@ -143,7 +193,7 @@ class TkApp:
                                           orient='vertical')
         self.routes_scrollbar.config(command=self.routes_listbox.yview)
         self.routes_scrollbar.grid(row=1, column=1, rowspan=1, columnspan=1,
-                                   sticky=(N, E, S, W), padx=(0,10))
+                                   sticky=(N, E, S, W), padx=(0, 10))
         self.routes_listbox.config(yscrollcommand=self.routes_scrollbar.set)
 
     def create_grade_filter(self, row, column, rowspan, columnspan):
@@ -176,7 +226,7 @@ class TkApp:
                                           orient='vertical')
         self.grades_scrollbar.config(command=self.grades_listbox.yview)
         self.grades_scrollbar.grid(row=1, column=1, rowspan=1, columnspan=1,
-                                   sticky=(N, E, S, W), padx=(0,10))
+                                   sticky=(N, E, S, W), padx=(0, 10))
         self.grades_listbox.config(yscrollcommand=self.grades_scrollbar.set)
 
     def sort_grade_list(self):
@@ -234,19 +284,29 @@ class TkApp:
         resized_image = img.resize((int(self.img_width), int(self.img_height)))
 
         self.display_image_on_route_canvas(resized_image)
+        self.currently_selected_route = route
 
     def display_image_on_route_canvas(self, route_image):
         self.canvas.image = ImageTk.PhotoImage(route_image)
         self.canvas.create_image(0, 0, image=self.canvas.image, anchor='nw')
+
+    def quit(self):
+        self.root.destroy()
+        if self.route_menu:
+            self.route_menu.destroy()
 
     def create_buttons(self, row, column, rowspan, columnspan):
         button_frame = Frame(self.root, width=self.list_width,
                              height=self.buttons_height)
         button_frame.grid_propagate(0)
 
-        add_route_button = Button(button_frame, text="Add route",
-                                  command=self.add_route)
+        # add_route_button = Button(button_frame, text="Add route",
+        #                           command=self.add_route)
+        # add_route_button.pack(side=LEFT, padx=self.list_width / 20)
+        add_route_button = Button(button_frame, text="Route Menu",
+                                  command=self.run_route_menu)
         add_route_button.pack(side=LEFT, padx=self.list_width / 20)
+
         ##        add_route_button.grid(row=2, column=1, rowspan=1, columnspan=1)
 
         quit_button = Button(button_frame, text='Quit',
