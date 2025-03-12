@@ -45,21 +45,15 @@ class View:
     def run_route_menu(self):
         self.route_menu = RouteMenu(self.controller)
 
-    def run_route_editor(self):
+    def run_route_editor(self, image=None):
         self.main_window.root.withdraw()
         self.route_editor_window = RouteEditorWindow()
         self.editor_canvas = RouteCanvas(self.route_editor_window, controller=self.controller, clickable=True)
-        #
-        # self.canvas = Canvas(self.route_editor_window.root, width=self.route_editor_window.img_width,
-        #                      height=self.route_editor_window.img_height)
-        # self.canvas.grid(row=0, column=0, rowspan=1,
-        #                  columnspan=1)
-        #
-        # self.base_image = image_utils.open_image_and_size("static/Board_Layout.png", self.route_editor_window.img_width,
-        #                                                   self.route_editor_window.img_height)
-        #
-        # self.canvas.image = ImageTk.PhotoImage(self.base_image)
-        # self.canvas.create_image(0, 0, image=self.canvas.image, anchor='nw')
+        if image:
+            self.editor_canvas.display_image_on_route_canvas(image)
+
+
+
         #
         # self.route_editor_window.root.update_idletasks()
         # self.route_editor_window.root.resizable(0, 0)

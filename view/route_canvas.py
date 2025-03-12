@@ -16,6 +16,8 @@ class RouteCanvas:
         self.controller = controller
         self.parent_window = parent_window
 
+        self.pressed_key = None
+
         canvas_position = parent_window.route_canvas_position()
 
         self.canvas = Canvas(parent_window.root, width=parent_window.img_width, height=parent_window.img_height)
@@ -28,9 +30,18 @@ class RouteCanvas:
 
         if clickable:
             self.canvas.bind("<Button-1>", self.on_click)
+            self.canvas.bind("<KeyPress>", self.on_key_press)
+            self.canvas.bind("<KeyRelease>", self.on_key_release)
 
     def on_click(self, event):
-        self.controller.canvas_click(event.x, event.y)
+        self.canvas.focus_set()
+        self.controller.canvas_click(event.x, event.y, self.pressed_key)
+
+    def on_key_press(self, event):
+        self.pressed_key = event.keysym
+
+    def on_key_release(self, event):
+        self.pressed_key = None
 
     def display_image_on_route_canvas(self, route_image):
         self.canvas.image = ImageTk.PhotoImage(route_image)

@@ -88,7 +88,7 @@ class OptionButtons:
     def add_route(self):
         self.route_menu.destroy()
         self.parent.withdraw()
-        route_adder = RouteAdder()
+        route_adder = RouteAdder(route_handler=self.route_handler)
         route_adder.create_route()
         check_route_exists, route_nr, route_name = route_adder.check_route_exists()
         if check_route_exists == True:

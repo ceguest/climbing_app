@@ -33,4 +33,10 @@ class HoldHandler:
                             (df['y'] < y + radius) &
                             (df['y'] > y - radius)]
 
-        return filtered_holds
+        hold = Hold(
+            filtered_holds['x'].values[0],
+            filtered_holds['y'].values[0],
+            filtered_holds['id'].values[0]
+        )
+
+        return hold
