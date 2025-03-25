@@ -39,7 +39,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments;feet
 38;Kinda Crimpy Regression;11, 78;32, 58;6B;Tom;20/03/2024;;
 39;Claire Gaston Right;14, 78;34, 60;6A;Tom;20/03/2024;;
 40;Claire Gaston Left;14, 77;30, 62;6A;Tom;20/03/2024;;
-41;Baby Beast;5, 15, 78;37, 30;5+;Claire;20/03/2024;Finish on BM middle sloper;
+41;Baby Beast;5, 15;37, 30;5+;Claire;20/03/2024;Finish on BM middle sloper;[(2038, 212)]
 42;Purple Dots;17, 79;52;6A;Dan + Sam;20/03/2024;;
 43;Boomerang;8, 1, 75;12, 21, 29, 33, 36, 50, 65, 56, 59;6B+;Tom;20/03/2024;Green feet. Sequential hands, no re-use;
 44;Light Green Dots Mod;1, 4, 81;21, 61;6A;Tom;27/03/2024;;
@@ -60,7 +60,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments;feet
 59;Light Blue Dots;18, 41, 75;34, 60;6A;Dan + Sam;24/07/2024;;
 60;Plastic Fantastic;17, 77;32, 64;6C;Tom;24/07/2024;;
 61;Left Ladder C;21, 12, 75;42;5;Claire;06/08/2024;;
-62;C Proj Wip;11, 12, 75;21, 29, 44, 60;TBC;Claire;06/08/2024;WIP route, trying to get better at rail start;
+62;Learning Little Fingers;11, 12, 101;21, 29, 44, 58;5+;Claire;06/08/2024;Trying to get better at rail start and smaller holds;[]
 63;Almost Orange;19, 4, 79;49, 66;5;Claire;06/08/2024;Orange for LH start rather than the wood;
 64;Undercuts + Crimps 2;1, 4, 73;22, 24, 59;6B;Tom;20/08/2024;;
 65;Mr Stretch;17, 76;69, 44;6B+;Tom;20/08/2024;;
@@ -97,7 +97,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments;feet
 96;It Works In Theory;40, 3, 72;32, 45, 59;PROJECT;Tom;29/01/2025;WIP;
 97;Lots More Lats;3, 4, 73;5, 15, 65, 56, 59;6C+;Tom;12/02/2025;Red feet, orange R to match;
 98;Sweet Dreams;14, 75;34, 60, 61;4;Claire;18/02/2025;;
-99;Left Yellow Crimps;85, 86, 77;91, 94, 100;PROJECT;Tom;02/03/2025;;[(1368, 2091), (1229, 1929), (1938, 2096), (2132, 1895)]
+99;Left Yellow Crimps;85, 86, 77;91, 94, 100;6B;Tom;02/03/2025;;[(1368, 2091), (1229, 1929), (1938, 2096), (2132, 1895)]
 100;We Got New Holds;3, 88, 73;89, 21, 56, 59;6A+;Tom;02/03/2025;;
 101;Just The New Ones;87, 22, 88, 101;96, 93, 97;6A;Tom;04/03/2025;;[]
 102;Small Crimps Aren'T That Bad;15, 88, 104;98, 95;6A;Tom;04/03/2025;;[]
@@ -108,3 +108,4 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments;feet
 107;Extended Warmup;84, 11, 77;93, 92;6A+;Tom;12/03/2025;;[(1232, 2051), (1428, 1982), (1747, 2063)]
 108;Ape Index;1, 12, 104;96;6B;Tom;12/03/2025;Matching allowed;[(1234, 2049), (1744, 2050), (2260, 2048)]
 109;Tbc;5, 88, 101;98, 95, 102;PROJECT;Tom;12/03/2025;;[(2974, 1625)]
+110;Tbc;77, 17;99, 36, 69, 59, 102;PROJECT;Tom;25/03/2025;Fix feet once positions sorted for 2nd RH;[]
