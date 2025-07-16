@@ -18,7 +18,8 @@ Bugs
 * there is an error being thrown and not caught by something in route adder
   ** this is if a click event happens outside the parameters of the hold location + tolerance i.e. no hold ID returned so can't continue next command with blank parameter **
 * handle closing the route menu better, e.g. if you click outside the menu
-* handle clicking edit rout better where no route selected
+* handle clicking edit route better where no route selected
+* quit button only closes the main window, not the entire app e.g. if the route menu is open it remains so and the program keeps running (need to check that quit kills root and menu is a child of root)
 
 Done
 * make routes in listbox have id, name and grade
