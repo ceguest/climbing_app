@@ -89,7 +89,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments;feet
 88;Rolly Holdy;17, 73;23, 58;6B+;Tom;15/01/2025;Red feet;
 89;Rich Woz Ere 2;11, 79;44, 51;6A+;Rich;19/01/2025;Green feet;
 90;Twister;5, 3, 80;23, 21, 56, 50;6B+;Claire;19/01/2025;;
-91;Pass;13, 79;30, 65, 62;4;Claire;21/01/2025;;
+91;Pass;13, 79;30, 65, 62;4+;Claire;21/01/2025;;[]
 92;Pass Progression;13, 79;30;5;Claire;21/01/2025;;
 93;Yellow Banana;17, 79;52, 64;6A;Tom;29/01/2025;Sequential hands;
 94;Lonely Hold;1, 22, 78;58, 67;6B+;Claire;29/01/2025;Don't pinch the start holds;
@@ -99,7 +99,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments;feet
 98;Sweet Dreams;14, 75;34, 60, 61;4;Claire;18/02/2025;;
 99;Left Yellow Crimps;85, 86, 77;91, 94, 100;6B;Tom;02/03/2025;;[(1368, 2091), (1229, 1929), (1938, 2096), (2132, 1895)]
 100;We Got New Holds;3, 88, 73;89, 21, 56, 59;6A+;Tom;02/03/2025;;
-101;Just The New Ones;87, 22, 88, 101;93, 97;6A+;Tom;04/03/2025;;[]
+101;Just The New Ones;87, 22, 88, 101;96, 93, 97;6A+;Tom;04/03/2025;Sequential hands;[]
 102;Small Crimps Aren'T That Bad;15, 88, 104;98, 95;6A;Tom;04/03/2025;;[]
 103;Roll Over;10, 13, 79;96, 51;5;Claire;04/03/2025;;[]
 104;Matchstick;87, 84, 103;92, 96;6A+;Tom;04/03/2025;;[(2822, 1765)]
@@ -114,3 +114,6 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments;feet
 113;Too Hot To Climb Hard;11, 78;23, 97, 95;TBC;Tom;09/07/2025;Yellow feet, match white pinch;[(2821, 1771)]
 114;Matching's Tricky;84, 87, 101;90, 93;6B;Tom;16/07/2025;Red feet, L hand to the finish first;[]
 115;Tiptoe;5, 88, 104;98, 93;6B+;Tom;16/07/2025;Yellow feet;[]
+116;Basic R-L;15, 20, 101;96, 92;6A;Tom;15/04/2025;;[]
+117;Banana;84, 11, 82;87, 93, 89, 102;6B;Tom;15/04/2025;;[]
+118;Little Steps;87, 75, 88;93, 58, 59, 33;TBC;Claire;30/07/2025;;[]
