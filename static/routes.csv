@@ -92,7 +92,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments;feet
 91;Pass;13, 79;30, 65, 62;4+;Claire;21/01/2025;;[]
 92;Pass Progression;13, 79;30;5;Claire;21/01/2025;;
 93;Yellow Banana;17, 79;52, 64;6A;Tom;29/01/2025;Sequential hands;
-94;Lonely Hold;1, 22, 78;58, 67;6B+;Claire;29/01/2025;Don't pinch the start holds;
+94;Lonely Hold;1, 22, 78;58, 67;6B+;Claire;29/01/2025;Don't pinch the start holds. Crazy hard if not starting off pad;[]
 95;Mirror Momentum;3, 5, 76;69, 56;6B+;Tom;29/01/2025;;
 96;It Works In Theory;40, 3, 72;32, 45, 59;PROJECT;Tom;29/01/2025;WIP;
 97;Lots More Lats;3, 4, 73;5, 15, 65, 56, 59;6C+;Tom;12/02/2025;Red feet, orange R to match;
@@ -103,7 +103,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments;feet
 102;Small Crimps Aren'T That Bad;15, 88, 104;98, 95;6A;Tom;04/03/2025;;[]
 103;Roll Over;10, 13, 79;96, 51;5;Claire;04/03/2025;;[]
 104;Matchstick;87, 84, 103;92, 96;6A+;Tom;04/03/2025;Yellow feet;[(2822, 1765)]
-105;Railway Line;11, 79;58, 96, 52;6B;Claire;04/03/2025;Specified feet or green feet... Only match the dark one;[(1234, 2051), (2034, 2056)]
+105;Railway Line;11, 79;58, 96, 52;6B;Claire;04/03/2025;Green feet... Only match the dark one;[]
 106;Dirty Diagonal;84, 104, 11;93, 98, 102, 87;6B+;Tom;04/03/2025;Which feet...;[(2974, 1630), (1554, 2088)]
 107;Extended Warmup;84, 11, 77;93, 92;6A+;Tom;12/03/2025;Specified feet;[(1232, 2051), (1428, 1982), (1747, 2063)]
 108;Ape Index;1, 12, 104;96;6B;Tom;12/03/2025;Specified feet, Matching allowed;[(1234, 2049), (1744, 2050), (2260, 2048)]
@@ -119,3 +119,4 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments;feet
 118;Little Steps;87, 75, 88;93, 58, 59, 33;TBC;Claire;30/07/2025;;[]
 119;Migration;11, 83, 82;92, 58, 93, 69, 102;6B;Tom;16/09/2025;Sequential hands, no reuse, green feet;[(2975, 1632)]
 120;Contrived;17, 79;98, 99, 97, 67, 102;PROJECT;Tom;15/10/2025;L hand first to force both on flat hardwood;[]
+121;No More Lats;3, 88, 73;87, 65, 56, 59;6C;Tom;04/11/2025;Red feet, orange R foot to match;[]
