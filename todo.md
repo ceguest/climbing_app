@@ -20,6 +20,9 @@ Bugs
 * handle closing the route menu better, e.g. if you click outside the menu
 * handle clicking edit route better where no route selected
 * quit button only closes the main window, not the entire app e.g. if the route menu is open it remains so and the program keeps running (need to check that quit kills root and menu is a child of root)
+* can't create route 1 - throws error because index doesn't exist
+* setting up hold set doesn't add header line (id,x,y) which trips up hold handler
+* sort out aspect ratio of main image (don't fill space?)
 
 Done
 * make routes in listbox have id, name and grade
