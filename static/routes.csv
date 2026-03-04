@@ -12,3 +12,8 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments;feet
 11;Got To Drop Before You Can Pop;13, 109;28, 27, 60, 58, 51;6B;Tom;08/02/2026;Green Feet. Reuse but don't match;[]
 12;Leading Lefty;21, 95;42, 59, 68;6B+;Tom;08/02/2026;Green feet;[]
 13;Un-Nature-Al Selection;26, 12, 49;65, 82, 29, 76;6B;Tom;08/02/2026;Reuse, don't match (clock-ish);[]
+14;Captain Obvious;20, 31, 104;46, 62, 74;PROJECT;Tom;04/03/2026;Yellow Feet;[]
+15;Why Does It Start Over There;12, 6, 101;16, 75;6B+;Tom;04/03/2026;Does it work with green feet?;[]
+16;Bottom To Top;4, 5, 99;;6A;Tom;04/03/2026;Set feet;[(1565, 2494), (1068, 2785)]
+17;Lanky;14, 15, 96;91;6B;Tom;04/03/2026;Yellow feet;[]
+18;Finger Training;12, 15, 106;43, 76, 92;PROJECT;Tom;04/03/2026;No matching;[]
