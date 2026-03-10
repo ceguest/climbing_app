@@ -16,4 +16,7 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments;feet
 15;Why Does It Start Over There;12, 6, 101;16, 75;6B+;Tom;04/03/2026;Does it work with green feet?;[]
 16;Bottom To Top;4, 5, 99;;6A;Tom;04/03/2026;Set feet;[(1565, 2494), (1068, 2785)]
 17;Lanky;14, 15, 96;91;6B;Tom;04/03/2026;Yellow feet;[]
-18;Finger Training;12, 15, 106;43, 76, 92;PROJECT;Tom;04/03/2026;No matching;[]
+18;Testpiece;12, 15, 106;43, 92, 77;PROJECT;Tom;04/03/2026;No matching;[]
+19;Need To Be Warm-Ish;6, 21, 97;60, 56, 92;6B;Tom;10/03/2026;;[]
+20;Testpiece Lite;12, 15, 106;27, 76, 92;6B+;Tom;10/03/2026;;[]
+21;Ukraine;1, 5, 101;24, 56, 80;6A+;Tom;10/03/2026;Yellow feet;[]
