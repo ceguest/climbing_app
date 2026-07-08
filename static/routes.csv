@@ -30,3 +30,4 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments;feet
 29;Kinder;32, 8, 108;44, 75, 85;6A;Claire;06/05/2026;;[]
 30;37.2;21, 106;50, 77, 92;PROJECT;Tom;06/05/2026;;[]
 31;Slip N Slide;22, 101;33, 58, 86;PROJECT;Tom;06/05/2026;;[]
+32;Rehab;21, 6, 103;43, 75, 82;6A;Tom;08/07/2026;;[]
