@@ -34,3 +34,5 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments;feet
 33;Not For The Slippery Fingered;15, 6, 102;40, 66, 71, 81;PROJECT;Tom;28/07/2026;;[]
 34;Kermit;1, 2, 103;14, 5, 44, 73;6B;Tom;28/07/2026;Green feet (frog);[]
 35;Kinder 2;32, 9, 108;44, 75, 84;6A+;Tom;28/08/2026;Green feet;[]
+36;Hardwood Warmup;23, 30, 93;47, 44, 73, 83, 89;6A;Tom;16/09/2026;;[]
+37;Slopey Traverse;22, 94;28, 60, 56, 82;6A+;Tom;16/09/2026;;[]
