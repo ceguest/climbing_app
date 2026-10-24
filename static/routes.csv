@@ -36,4 +36,6 @@ route_id;route_name;specials;holds;grade;setter;date_set;comments;feet
 35;Kinder 2;32, 9, 108;44, 75, 84;6A+;Tom;28/08/2026;Green feet;[]
 36;Hardwood Warmup;23, 30, 93;47, 44, 73, 83, 89;6A;Tom;16/09/2026;;[]
 37;Slopey Traverse;22, 94;28, 60, 56, 82;6A+;Tom;16/09/2026;;[]
-38;HWR/37L;15, 6, 102;72, 81;6A+;Unconfirmed;25/09/2026;Yellow feet;[]
+38;HWR/37L;15, 6, 102;72, 81;6A+;Tom;25/09/2026;Yellow feet;[]
+39;Deadpoint;12, 15, 95;35, 91;PROJECT;Tom;24/10/2026;Red feet project. 6A+/6B on grey feet;[]
+40;Weird Hard;10, 101;5, 41, 64;6B;Tom;24/10/2026;Green feet;[]
